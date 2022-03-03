@@ -12,7 +12,7 @@ function SignupPage(props) {
 
   const navigate = useNavigate();
   
-  const handleUsername = (e) => setUsername(e.target.value);
+  const handle = (e) => setUsername(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
 
@@ -55,7 +55,7 @@ function SignupPage(props) {
             required={true}
             name="username"
             value={username}
-            onChange={handleUsername}
+            onChange={handle}
           />
         </label>
 
