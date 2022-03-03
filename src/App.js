@@ -7,6 +7,7 @@ import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
 import ShelterList from './components/ShelterList';
 import RefugeesPage from './components/RefugeesPage';
+import Navbar from "./components/Navbar.js";
 
 function App() {
 
@@ -29,6 +30,9 @@ function App() {
   // }
   return (
     <div className="App">
+
+     <Navbar />
+
      <Routes>
         <Route path="/" element={ <ShelterList /> } />
 
