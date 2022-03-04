@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router';
 import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
 import ShelterList from './components/ShelterList';
+import ShelterCreate from './components/ShelterCreate';
 import RefugeesPage from './components/RefugeesPage';
 import Navbar from "./components/Navbar.js";
 
@@ -36,6 +37,7 @@ function App() {
      <Routes>
         <Route path="/" element={ <ShelterList /> } />
 
+        __
         <Route path="/refugees" element={
           <IsPrivate>
             <RefugeesPage  />

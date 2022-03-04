@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 import './Navbar.css';
+import  { AuthContext } from "../context/auth.context"
 
 function Navbar() {
 
@@ -24,7 +25,7 @@ function Navbar() {
       </NavLink>
       </li>
       <li class="nav-item">
-      <NavLink className="nav-link" to="/shelter/">
+      <NavLink className="nav-link" to="/shelter/new">
                 create Shelter
       </NavLink>
       </li>
