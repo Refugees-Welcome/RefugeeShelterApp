@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 import './Navbar.css';
+import { useContext } from "react";
 import  { AuthContext } from "../context/auth.context"
 
 function Navbar() {
-
+  const {isLoggedIn, user, logOutUser } = useContext(AuthContext);
   return (
 <nav className="navbar navbar-expand-lg navbar-light bg-light">
   <a className="navbar-brand" href="#">Refugees Welcome</a>
@@ -19,6 +20,8 @@ function Navbar() {
                 Home
       </NavLink>
       </li>
+      { isLoggedIn && 
+      <>
       <li className="nav-item">
       <NavLink className="nav-link" to="/refugee/">
                 Refugees
@@ -34,6 +37,10 @@ function Navbar() {
                 create Shelter
       </NavLink>
       </li>
+      </>
+      }
+      { !isLoggedIn && 
+      <>
       <li className="nav-item">
       <NavLink className="nav-link" to="/login/">
                 Login
@@ -44,6 +51,8 @@ function Navbar() {
                 Signup
       </NavLink>
       </li>
+      </>
+    }
     </ul>
   </div>
 </nav>
