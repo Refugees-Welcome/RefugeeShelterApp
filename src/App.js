@@ -28,6 +28,7 @@ function App() {
       })
       .catch(e => console.log("error getting list of shelter...", e));
   }, []);
+
   useEffect( () => {
     fetchShelter();
   }, [isLoggedIn]);
@@ -94,7 +95,7 @@ function App() {
           <IsPrivate>
             <RefugeeCreate  updateRefugee={fetchRefugee}/>
           </IsPrivate>
-        } /> 
+        } />
         
         <Route path="/signup" element={ 
           <IsAnon>
@@ -110,7 +111,7 @@ function App() {
         <Route path="/profile" element={ 
           <IsPrivate>
             <UserProfile />
-          </IsPrivate> 
+          </IsPrivate>
         } />
 
 

@@ -14,7 +14,6 @@ export default function ShelterList(props){
                         <Link to={`/shelter/${shelter._id}`}>more Details</Link>
                         <br></br>
                     </div>
-                    
                     )
                 })
             }

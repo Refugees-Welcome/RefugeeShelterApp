@@ -1,8 +1,8 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../context/auth.context"
-export default function CreateProject(props) {
+export default function EditProject(props) {
 
     const navigate = useNavigate();
 
@@ -14,27 +14,27 @@ export default function CreateProject(props) {
     const [address, setAddress] = useState("");
     const [error, setErrorMessage] = useState("");
 
-    const { getToken } = useContext(AuthContext);
-    
+    const [data, setData] = useState();
+
+    useEffect(() => {
+        axios
+          .get(`${process.env.REACT_APP_API_URL}/shelter`)
+          .then((response) => setData(response.data))
+          .catch((err) => console.log(err));
+      }, []);
+
     const handleLoginSubmit = (e) => {
       e.preventDefault();
-  
       const shelterDetails = {
         name: name,
         languages: languages,
         contactInfo: contactInfo,
         description: description,
         address: address
-      };
-      const storedToken = getToken();
-
-      axios.post(
-        `${process.env.REACT_APP_API_URL}/shelter`, 
-        shelterDetails,
-        { headers: { Authorization: `Bearer ${storedToken}` } }
-        )
-    .then( () => {
-        props.updateShelter();
+      }
+  
+      axios.post(`${process.env.REACT_APP_API_URL}/shelter/:id`, shelterDetails)
+        .then( () => {
           navigate("/");
         })
         .catch( error => {
@@ -45,11 +45,11 @@ export default function CreateProject(props) {
     };
 
     return(
-        <div className="ShelterCreate">
+        <div className="ShelterEdit">
               <h1>I have a shelter that I can share</h1>
               <div className="container">
                 <div className="col-lg-1"></div>
-                <div className="col-lg-2 d-flex justify-content-center">
+                <div className="col-lg-2">
                     <form onSubmit={handleLoginSubmit}>
                         <div className="form-group">
                             <label for="Name">Name:</label>
@@ -57,7 +57,7 @@ export default function CreateProject(props) {
                                 type="text"
                                 required={true}
                                 name="Name"
-                                value={name}
+                                value={data.name}
                                 onChange={(e) => setName(e.target.value)}
                                 className="form-control"
                                 id="Name"
@@ -70,7 +70,7 @@ export default function CreateProject(props) {
                                 type="text"
                                 required={true}
                                 name="Languages"
-                                value={languages}
+                                value={data.languages}
                                 onChange={(e) => setLanguages(e.target.value)}
                                 className="form-control"
                             />
@@ -82,7 +82,7 @@ export default function CreateProject(props) {
                                 type="text"
                                 required={true}
                                 name="contactInfo"
-                                value={contactInfo}
+                                value={data.contactInfo}
                                 onChange={(e) => setContactInfo(e.target.value)}
                                 className="form-control"
                             />
@@ -94,7 +94,7 @@ export default function CreateProject(props) {
                                 type="text"
                                 required={true}
                                 name="description"
-                                value={description}
+                                value={data.description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 className="form-control"
                                 cols="40" rows="5"
@@ -107,7 +107,7 @@ export default function CreateProject(props) {
                                 type="text"
                                 required={true}
                                 name="address"
-                                value={address}
+                                value={data.address}
                                 onChange={(e) => setAddress(e.target.value)}
                                 className="form-control"
                             />
