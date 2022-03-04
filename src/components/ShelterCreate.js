@@ -16,7 +16,7 @@ export default function CreateProject(props) {
 
     const { getToken } = useContext(AuthContext);
     
-    const handleLoginSubmit = (e) => {
+    const handleSubmit = (e) => {
       e.preventDefault();
   
       const shelterDetails = {
@@ -24,35 +24,32 @@ export default function CreateProject(props) {
         languages: languages,
         contactInfo: contactInfo,
         description: description,
+        // available,
         address: address
       };
       const storedToken = getToken();
 
       axios.post(
-        `${process.env.REACT_APP_API_URL}/shelter`, 
+        `${process.env.REACT_APP_API_URL}/shelter`,
         shelterDetails,
         { headers: { Authorization: `Bearer ${storedToken}` } }
-        )
-    .then( () => {
-        props.updateShelter();
-          navigate("/");
+    )
+        .then(response => {
+            props.updateShelter();
+            navigate("/");
         })
-        .catch( error => {
-          const msg = error.response.data.errorMessage;
-          console.log("error creating new user...", msg);
-          setErrorMessage(msg);
-        });
-    };
+        .catch(e => console.log("error creating new shelter...", e))
+}
 
     return(
         <div className="ShelterCreate">
               <h1>I have a shelter that I can share</h1>
               <div className="container">
                 <div className="col-lg-1"></div>
-                <div className="col-lg-2 d-flex justify-content-center">
-                    <form onSubmit={handleLoginSubmit}>
+                <div className="col-lg-2">
+                    <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label for="Name">Name:</label>
+                            <label htmlFor="Name">Name:</label>
                             <input
                                 type="text"
                                 required={true}
@@ -65,8 +62,8 @@ export default function CreateProject(props) {
                         </div>
 
                         <div className="form-group">
-                            <label for="Languages">Languages:</label>
-                            <input for="Name"
+                            <label htmlFor="Languages">Languages:</label>
+                            <input htmlFor="Name"
                                 type="text"
                                 required={true}
                                 name="Languages"
@@ -77,7 +74,7 @@ export default function CreateProject(props) {
                         </div>
 
                         <div className="form-group">
-                            <label for="ContactInfo">ContactInfo:</label>
+                            <label htmlFor="ContactInfo">ContactInfo:</label>
                             <input
                                 type="text"
                                 required={true}
@@ -89,7 +86,7 @@ export default function CreateProject(props) {
                         </div>
 
                         <div className="form-group">
-                            <label for="Description">Description:</label>
+                            <label htmlFor="Description">Description:</label>
                             <textarea
                                 type="text"
                                 required={true}
@@ -102,7 +99,7 @@ export default function CreateProject(props) {
                         </div>
 
                         <div className="form-group">
-                            <label for="Address">Address:</label>
+                            <label htmlFor="Address">Address:</label>
                             <input
                                 type="text"
                                 required={true}
