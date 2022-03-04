@@ -60,7 +60,6 @@ function App() {
       )
       .then(response => {
         setRefugeesArr(response.data);
-        console.log(response.data)
       })
       .catch(e => console.log("error getting list of projects...", e));
   }
