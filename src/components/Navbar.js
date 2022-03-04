@@ -20,16 +20,16 @@ function Navbar() {
       </NavLink>
       </li>
       <li className="nav-item">
-      {/* <NavLink className="nav-link" to="/refugee/">
+      <NavLink className="nav-link" to="/refugee/">
                 Refugees
-      </NavLink> */}
+      </NavLink>
       </li>
       <li className="nav-item">
-      <NavLink className="nav-link" to="/refugees/">
+      <NavLink className="nav-link" to="/refugee/new">
                 create Refugee
       </NavLink>
       </li>
-      <li class="nav-item">
+      <li className="nav-item">
       <NavLink className="nav-link" to="/shelter/new">
                 create Shelter
       </NavLink>

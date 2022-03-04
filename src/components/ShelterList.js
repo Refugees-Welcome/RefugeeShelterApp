@@ -12,7 +12,9 @@ export default function ShelterList(props){
                         <h4>Languages: {shelter.languages}</h4>
                         <h4>Address: {shelter.address}</h4>
                         <Link to={`/shelter/${shelter._id}`}>more Details</Link>
+                        <br></br>
                     </div>
+                    
                     )
                 })
             }

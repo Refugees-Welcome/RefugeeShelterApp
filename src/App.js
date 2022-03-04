@@ -11,7 +11,7 @@ import ShelterCreate from './components/ShelterCreate';
 import RefugeesPage from './components/RefugeesPage';
 import { AuthContext } from "./context/auth.context"
 import Navbar from "./components/Navbar.js";
-import ShelterCreate from "./components/ShelterCreate"
+import RefugeeCreate from './components/RefugeeCreate'
 
 function App() {
   const [shelterArr, setShelterArr] = useState([]);
@@ -27,13 +27,27 @@ function App() {
       })
       .catch(e => console.log("error getting list of shelter...", e));
   }, []);
-   useEffect( () => {
-    fetchRefugee();
-  }, []);
+  useEffect( () => {
+    fetchShelter();
+  }, [isLoggedIn]);
 
   useEffect( () => {
     fetchRefugee();
   }, [isLoggedIn]);
+
+  const fetchShelter = () => {
+
+    const storedToken = getToken();
+
+    axios.get(
+        `${process.env.REACT_APP_API_URL}/shelter`,
+        { headers: { Authorization: `Bearer ${storedToken}` } }
+      )
+      .then(response => {
+        setShelterArr(response.data);
+      })
+      .catch(e => console.log("error getting list of projects...", e));
+  }
 
   const fetchRefugee = () => {
 
@@ -45,6 +59,7 @@ function App() {
       )
       .then(response => {
         setRefugeesArr(response.data);
+        console.log(response.data)
       })
       .catch(e => console.log("error getting list of projects...", e));
   }
@@ -57,17 +72,22 @@ function App() {
             <ShelterList shelters={shelterArr}/> 
         } />
 
-      <Route path="/shelter" element={
+      <Route path="/shelter/new" element={
           <IsPrivate>
-            <ShelterCreate  />
+            <ShelterCreate updateShelter={fetchShelter} />
           </IsPrivate>
         } /> 
 
-        {/* <Route path="/refugee" element={
+        <Route path="/refugee" element={
           <IsPrivate>
             <RefugeesPage  refugees={refugeesArr}/>
           </IsPrivate>
-        } />  */}
+        } /> 
+        <Route path="/refugee/new" element={
+          <IsPrivate>
+            <RefugeeCreate  updateRefugee={fetchRefugee}/>
+          </IsPrivate>
+        } /> 
         
         <Route path="/signup" element={ 
           <IsAnon>
