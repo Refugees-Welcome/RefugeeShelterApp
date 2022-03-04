@@ -6,7 +6,7 @@ import { AuthContext } from "../context/auth.context"
 export default function CreateRefugee(props) {
 
     const navigate = useNavigate();
-
+    const {user} = useContext(AuthContext);
     const [name, setName] = useState("");
     const [languages, setLanguages] = useState("");
     const [contactInfo, setContactInfo] = useState("");
@@ -25,6 +25,7 @@ export default function CreateRefugee(props) {
             languages,
             contactInfo,
             description,
+            author: user._id,
             // onSearch, 
             currentlyBasedIn,
         };

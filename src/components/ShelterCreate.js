@@ -5,7 +5,7 @@ import { AuthContext } from "../context/auth.context"
 export default function CreateProject(props) {
 
     const navigate = useNavigate();
-
+    const {user} = useContext(AuthContext);
     const [name, setName] = useState("");
     const [languages, setLanguages] = useState("");
     const [contactInfo, setContactInfo] = useState("");
@@ -17,13 +17,14 @@ export default function CreateProject(props) {
     const { getToken } = useContext(AuthContext);
     
     const handleSubmit = (e) => {
-      e.preventDefault();
-  
-      const shelterDetails = {
+    e.preventDefault();
+    
+    const shelterDetails = {
         name: name,
         languages: languages,
         contactInfo: contactInfo,
         description: description,
+        author: user._id,
         // available,
         address: address
       };
@@ -38,7 +39,7 @@ export default function CreateProject(props) {
             props.updateShelter();
             navigate("/");
         })
-        .catch(e => console.log("error creating new shelter...", e))
+        .catch(error => console.log("error creating new shelter...", error))
 }
 
     return(
@@ -60,7 +61,6 @@ export default function CreateProject(props) {
                                 id="Name"
                             />
                         </div>
-
                         <div className="form-group">
                             <label htmlFor="Languages">Languages:</label>
                             <input htmlFor="Name"
@@ -72,7 +72,6 @@ export default function CreateProject(props) {
                                 className="form-control"
                             />
                         </div>
-
                         <div className="form-group">
                             <label htmlFor="ContactInfo">ContactInfo:</label>
                             <input

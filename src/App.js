@@ -103,7 +103,7 @@ function App() {
         } />
         <Route path="/profile" element={ 
           <IsPrivate>
-            <UserProfile />
+            <UserProfile shelter={shelterArr}/>
           </IsPrivate>
         } />
 
