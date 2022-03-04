@@ -20,13 +20,28 @@ function Navbar() {
       </NavLink>
       </li>
       <li className="nav-item">
-      <NavLink className="nav-link" to="/refugees/">
+      <NavLink className="nav-link" to="/refugee/">
+                Refugees
+      </NavLink>
+      </li>
+      <li className="nav-item">
+      <NavLink className="nav-link" to="/refugee/new">
                 create Refugee
       </NavLink>
       </li>
-      <li class="nav-item">
+      <li className="nav-item">
       <NavLink className="nav-link" to="/shelter/new">
                 create Shelter
+      </NavLink>
+      </li>
+      <li className="nav-item">
+      <NavLink className="nav-link" to="/login/">
+                Login
+      </NavLink>
+      </li>
+      <li className="nav-item">
+      <NavLink className="nav-link" to="/Signup/">
+                Signup
       </NavLink>
       </li>
     </ul>

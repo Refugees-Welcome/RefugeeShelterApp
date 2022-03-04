@@ -11,9 +11,11 @@ import ShelterCreate from './components/ShelterCreate';
 import RefugeesPage from './components/RefugeesPage';
 import { AuthContext } from "./context/auth.context"
 import Navbar from "./components/Navbar.js";
+import RefugeeCreate from './components/RefugeeCreate'
 
 function App() {
   const [shelterArr, setShelterArr] = useState([]);
+  const [refugeesArr, setRefugeesArr] = useState([]);
   const { isLoggedIn, getToken } = useContext(AuthContext);
 
   useEffect( () => {
@@ -25,31 +27,43 @@ function App() {
       })
       .catch(e => console.log("error getting list of shelter...", e));
   }, []);
+  useEffect( () => {
+    fetchShelter();
+  }, [isLoggedIn]);
 
+  useEffect( () => {
+    fetchRefugee();
+  }, [isLoggedIn]);
 
-  //  useEffect( () => {
-  //   fetchRefugee();
-  // }, []);
+  const fetchShelter = () => {
 
-  // const fetchRefugee = () => {
+    const storedToken = getToken();
 
-  // useEffect( () => {
-  //   fetchRefugee();
-  // }, [isLoggedIn]);
+    axios.get(
+        `${process.env.REACT_APP_API_URL}/shelter`,
+        { headers: { Authorization: `Bearer ${storedToken}` } }
+      )
+      .then(response => {
+        setShelterArr(response.data);
+      })
+      .catch(e => console.log("error getting list of projects...", e));
+  }
 
-  // const fetchRefugee = () => {
+  const fetchRefugee = () => {
 
-  //   const storedToken = getToken();
+    const storedToken = getToken();
 
-  //   axios.get(
-  //       `${process.env.REACT_APP_API_URL}/refugee`,
-  //       { headers: { Authorization: `Bearer ${storedToken}` } }
-  //     )
-  //     .then(response => {
-  //       setProjectsArr(response.data);
-  //     })
-  //     .catch(e => console.log("error getting list of projects...", e));
-  // }
+    axios.get(
+        `${process.env.REACT_APP_API_URL}/refugee`,
+        { headers: { Authorization: `Bearer ${storedToken}` } }
+      )
+      .then(response => {
+        setRefugeesArr(response.data);
+        console.log(response.data)
+      })
+      .catch(e => console.log("error getting list of projects...", e));
+  }
+
   return (
     <div className="App">
       <Navbar />
@@ -64,9 +78,20 @@ function App() {
             <ShelterList shelters={shelterArr}/> 
         } />
 
-        <Route path="/refugees" element={
+      <Route path="/shelter/new" element={
           <IsPrivate>
-            <RefugeesPage  />
+            <ShelterCreate updateShelter={fetchShelter} />
+          </IsPrivate>
+        } /> 
+
+        <Route path="/refugee" element={
+          <IsPrivate>
+            <RefugeesPage  refugees={refugeesArr}/>
+          </IsPrivate>
+        } /> 
+        <Route path="/refugee/new" element={
+          <IsPrivate>
+            <RefugeeCreate  updateRefugee={fetchRefugee}/>
           </IsPrivate>
         } /> 
         

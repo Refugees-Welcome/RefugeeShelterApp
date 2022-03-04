@@ -1,36 +1,38 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router";
+import { AuthContext } from "../context/auth.context"
+export default function CreateProject(props) {
 
-export default function ShelterCreate(){
+    const navigate = useNavigate();
 
     const [name, setName] = useState("");
-    const [languages, setLanguage] = useState("");
-    const [description, setDescription] = useState("");
+    const [languages, setLanguages] = useState("");
     const [contactInfo, setContactInfo] = useState("");
+    const [description, setDescription] = useState("");
+    // const [available, setAvailable] = useState(true);
     const [address, setAddress] = useState("");
-    const [errorMessage, setErrorMessage] = useState("");
+    const [error, setErrorMessage] = useState("");
 
-    const handleName = (e) => setName(e.target.value);
-    const handleLanguages = (e) => setLanguage(e.target.value);
-    const handleContactInfo = (e) => setContactInfo(e.target.value);
-    const handleDescription = (e) => setDescription(e.target.value);
-    const handleAddress = (e) => setAddress(e.target.value);
+
+
+
+
 
     const handleLoginSubmit = (e) => {
       e.preventDefault();
   
       const shelterDetails = {
-        name: handleName,
-        languages: handleLanguages,
-        contactInfo: handleContactInfo,
-        description: handleDescription,
-        address: handleAddress
+        name: name,
+        languages: languages,
+        contactInfo: contactInfo,
+        description: description,
+        address: address
       }
   
       axios.post(`${process.env.REACT_APP_API_URL}/shelter`, shelterDetails)
         .then( () => {
-          //navigate("/");
+          navigate("/");
         })
         .catch( error => {
           const msg = error.response.data.errorMessage;
@@ -53,7 +55,7 @@ export default function ShelterCreate(){
                         required={true}
                         name="Name"
                         value={name}
-                        onChange={handleName}
+                        onChange={(e) => setName(e.target.value)}
                         class="form-control"
                         id="Name"
                     />
@@ -66,7 +68,7 @@ export default function ShelterCreate(){
                         required={true}
                         name="Languages"
                         value={languages}
-                        onChange={handleLanguages}
+                        onChange={(e) => setLanguages(e.target.value)}
                         class="form-control"
                     />
                 </div>
@@ -78,7 +80,7 @@ export default function ShelterCreate(){
                         required={true}
                         name="contactInfo"
                         value={contactInfo}
-                        onChange={handleContactInfo}
+                        onChange={(e) => setContactInfo(e.target.value)}
                         class="form-control"
                     />
                 </div>
@@ -90,7 +92,7 @@ export default function ShelterCreate(){
                         required={true}
                         name="description"
                         value={description}
-                        onChange={handleDescription}
+                        onChange={(e) => setDescription(e.target.value)}
                         class="form-control"
                     />
                 </div>
@@ -102,7 +104,7 @@ export default function ShelterCreate(){
                         required={true}
                         name="address"
                         value={address}
-                        onChange={handleAddress}
+                        onChange={(e) => setAddress(e.target.value)}
                         class="form-control"
                     />
                 </div>
