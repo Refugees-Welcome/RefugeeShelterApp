@@ -13,6 +13,7 @@ export default function CreateRefugee(props) {
     const [description, setDescription] = useState("");
     // const [onSearch, setOnSearch] = useState(true);
     const [currentlyBasedIn, setBasedIn] = useState("");
+    const [error, setErrorMessage] = useState("");
 
     const { getToken } = useContext(AuthContext);
 

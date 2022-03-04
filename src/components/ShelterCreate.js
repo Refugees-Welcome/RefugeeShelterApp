@@ -14,6 +14,7 @@ export default function CreateProject(props) {
     const [address, setAddress] = useState("");
     const [error, setErrorMessage] = useState("");
 
+    const { getToken } = useContext(AuthContext);
     
     const handleLoginSubmit = (e) => {
       e.preventDefault();
@@ -24,10 +25,16 @@ export default function CreateProject(props) {
         contactInfo: contactInfo,
         description: description,
         address: address
-      }
-  
-      axios.post(`${process.env.REACT_APP_API_URL}/shelter`, shelterDetails)
-        .then( () => {
+      };
+      const storedToken = getToken();
+
+      axios.post(
+        `${process.env.REACT_APP_API_URL}/shelter`, 
+        shelterDetails,
+        { headers: { Authorization: `Bearer ${storedToken}` } }
+        )
+    .then( () => {
+        props.updateShelter();
           navigate("/");
         })
         .catch( error => {
