@@ -8,6 +8,7 @@ import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
 import ShelterList from './components/ShelterList';
 import ShelterCreate from './components/ShelterCreate';
+import ShelterEdit from './components/ShelterEdit';
 import RefugeesPage from './components/RefugeesPage';
 import { AuthContext } from "./context/auth.context"
 import Navbar from "./components/Navbar.js";
@@ -70,12 +71,6 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-      <Route path="/shelter/new" element={
-          <IsPrivate>
-            <ShelterCreate  />
-          </IsPrivate>
-        } /> 
-
         <Route path="/" element={ 
             <ShelterList shelters={shelterArr}/> 
         } />
@@ -84,6 +79,10 @@ function App() {
           <IsPrivate>
             <ShelterCreate updateShelter={fetchShelter} />
           </IsPrivate>
+        } /> 
+
+      <Route path="/shelter/:id" element={
+            <ShelterEdit updateShelter={fetchShelter} />
         } /> 
 
         <Route path="/refugee" element={
