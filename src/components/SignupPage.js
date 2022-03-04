@@ -34,17 +34,13 @@ function SignupPage(props) {
         console.log("error creating new user...", msg);
         setErrorMessage(msg);
       });
-
   };
-
 
   return (
     <div className="SignupPage">
       <h1>Sign Up</h1>
 
-
       {errorMessage && <p className="error">{errorMessage}</p>}
-
 
       <form onSubmit={handleSignupSubmit}>
         
