@@ -9,21 +9,22 @@ import IsAnon from "./components/IsAnon";
 import ShelterList from './components/ShelterList';
 import RefugeesPage from './components/RefugeesPage';
 import { AuthContext } from "./context/auth.context"
+import Navbar from "./components/Navbar.js";
 
 function App() {
   const [shelterArr, setShelterArr] = useState([]);
   const { isLoggedIn, getToken } = useContext(AuthContext);
 
- 
-
+  useEffect( () => {
     axios.get(
         `${process.env.REACT_APP_API_URL}/shelter`,
       )
       .then(response => {
-        console.log(response)
         setShelterArr(response.data);
       })
       .catch(e => console.log("error getting list of shelter...", e));
+  }, []);
+
 
   //  useEffect( () => {
   //   fetchRefugee();
@@ -50,9 +51,10 @@ function App() {
   // }
   return (
     <div className="App">
+      <Navbar />
       <Routes>
         <Route path="/" element={ 
-        <ShelterList shelters={shelterArr}/> 
+            <ShelterList shelters={shelterArr}/> 
         } />
 
         <Route path="/refugees" element={
