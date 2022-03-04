@@ -17,8 +17,6 @@ export default function ShelterCreate(){
     const handleDescription = (e) => setDescription(e.target.value);
     const handleAddress = (e) => setAddress(e.target.value);
 
-    console.log("create shelter");
-
     const handleLoginSubmit = (e) => {
       e.preventDefault();
   
@@ -43,66 +41,77 @@ export default function ShelterCreate(){
 
     return(
         <div className="ShelterCreate">
-              <h1>Shelter Create</h1>
+              <h1>I have a shelter that I can share</h1>
+              <div class="container">
+                <div class="col-sm container-lg"></div>
+                <div class="col-sm">
+                    <form onSubmit={handleLoginSubmit}>
+                <div class="form-group">
+                    <label for="Name">Name:</label>
+                    <input
+                        type="text"
+                        required={true}
+                        name="Name"
+                        value={name}
+                        onChange={handleName}
+                        class="form-control"
+                        id="Name"
+                    />
+                </div>
 
-              <form onSubmit={handleLoginSubmit}>
-                <label>
-                Name:
-                <input
-                    type="text"
-                    required={true}
-                    name="name"
-                    value={name}
-                    onChange={handleName}
-                />
-                </label>
+                <div class="form-group">
+                    <label for="Languages">Languages:</label>
+                    <input for="Name"
+                        type="text"
+                        required={true}
+                        name="Languages"
+                        value={languages}
+                        onChange={handleLanguages}
+                        class="form-control"
+                    />
+                </div>
 
-                <label>
-                Languages:
-                <input
-                    type="text"
-                    required={true}
-                    name="password"
-                    value={languages}
-                    onChange={handleLanguages}
-                />
-                </label>
+                <div class="form-group">
+                    <label for="ContactInfo">ContactInfo:</label>
+                    <input
+                        type="text"
+                        required={true}
+                        name="contactInfo"
+                        value={contactInfo}
+                        onChange={handleContactInfo}
+                        class="form-control"
+                    />
+                </div>
 
-                <label>
-                ContactInfo:
-                <input
-                    type="text"
-                    required={true}
-                    name="contactInfo"
-                    value={contactInfo}
-                    onChange={handleContactInfo}
-                />
-                </label>
+                <div class="form-group">
+                    <label for="Description">Description:</label>
+                    <input
+                        type="text"
+                        required={true}
+                        name="description"
+                        value={description}
+                        onChange={handleDescription}
+                        class="form-control"
+                    />
+                </div>
 
-                <label>
-                Description:
-                <input
-                    type="text"
-                    required={true}
-                    name="description"
-                    value={description}
-                    onChange={handleDescription}
-                />
-                </label>
+                <div class="form-group">
+                    <label for="Address">Address:</label>
+                    <input
+                        type="text"
+                        required={true}
+                        name="address"
+                        value={address}
+                        onChange={handleAddress}
+                        class="form-control"
+                    />
+                </div>
 
-                <label>
-                Address:
-                <input
-                    type="text"
-                    required={true}
-                    name="address"
-                    value={address}
-                    onChange={handleAddress}
-                />
-                </label>
-
-                <button type="submit">Login</button>
-            </form>
+                <button type="submit" class="btn btn-primary p-3">create shelter</button>
+                    </form>
+                </div>
+                <div class="col-sm container-lg"></div>
+              </div>
         </div>
     )
 }
