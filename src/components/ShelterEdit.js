@@ -1,8 +1,12 @@
 import axios from "axios";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect} from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../context/auth.context"
+import { useParams } from "react-router-dom"
+
 export default function EditProject(props) {
+
+    const { Id } = useParams();
 
     const navigate = useNavigate();
 
@@ -16,9 +20,11 @@ export default function EditProject(props) {
 
     const [data, setData] = useState();
 
+    console.log("shelterEdit");
+
     useEffect(() => {
         axios
-          .get(`${process.env.REACT_APP_API_URL}/shelter`)
+          .get(`${process.env.REACT_APP_API_URL}/shelter/` + Id)
           .then((response) => setData(response.data))
           .catch((err) => console.log(err));
       }, []);
@@ -39,7 +45,7 @@ export default function EditProject(props) {
         })
         .catch( error => {
           const msg = error.response.data.errorMessage;
-          console.log("error creating new user...", msg);
+          console.log("error editing new user...", msg);
           setErrorMessage(msg);
         });
     };
