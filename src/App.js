@@ -68,12 +68,6 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-      <Route path="/shelter/new" element={
-          <IsPrivate>
-            <ShelterCreate  />
-          </IsPrivate>
-        } /> 
-
         <Route path="/" element={ 
             <ShelterList shelters={shelterArr}/> 
         } />

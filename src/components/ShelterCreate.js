@@ -16,7 +16,7 @@ export default function CreateProject(props) {
 
     const { getToken } = useContext(AuthContext);
     
-    const handleLoginSubmit = (e) => {
+    const handleSubmit = (e) => {
       e.preventDefault();
   
       const shelterDetails = {
@@ -24,98 +24,95 @@ export default function CreateProject(props) {
         languages: languages,
         contactInfo: contactInfo,
         description: description,
+        // available,
         address: address
       };
       const storedToken = getToken();
 
       axios.post(
-        `${process.env.REACT_APP_API_URL}/shelter`, 
+        `${process.env.REACT_APP_API_URL}/shelter`,
         shelterDetails,
         { headers: { Authorization: `Bearer ${storedToken}` } }
-        )
-    .then( () => {
-        props.updateShelter();
-          navigate("/");
+    )
+        .then(response => {
+            props.updateShelter();
+            navigate("/");
         })
-        .catch( error => {
-          const msg = error.response.data.errorMessage;
-          console.log("error creating new user...", msg);
-          setErrorMessage(msg);
-        });
-    };
+        .catch(e => console.log("error creating new shelter...", e))
+}
 
     return(
         <div className="ShelterCreate">
               <h1>I have a shelter that I can share</h1>
-              <div class="container">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-2">
-                    <form onSubmit={handleLoginSubmit}>
-                        <div class="form-group">
-                            <label for="Name">Name:</label>
+              <div className="container">
+                <div className="col-lg-1"></div>
+                <div className="col-lg-2">
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="Name">Name:</label>
                             <input
                                 type="text"
                                 required={true}
                                 name="Name"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
-                                class="form-control"
+                                className="form-control"
                                 id="Name"
                             />
                         </div>
 
-                        <div class="form-group">
-                            <label for="Languages">Languages:</label>
-                            <input for="Name"
+                        <div className="form-group">
+                            <label htmlFor="Languages">Languages:</label>
+                            <input htmlFor="Name"
                                 type="text"
                                 required={true}
                                 name="Languages"
                                 value={languages}
                                 onChange={(e) => setLanguages(e.target.value)}
-                                class="form-control"
+                                className="form-control"
                             />
                         </div>
 
-                        <div class="form-group">
-                            <label for="ContactInfo">ContactInfo:</label>
+                        <div className="form-group">
+                            <label htmlFor="ContactInfo">ContactInfo:</label>
                             <input
                                 type="text"
                                 required={true}
                                 name="contactInfo"
                                 value={contactInfo}
                                 onChange={(e) => setContactInfo(e.target.value)}
-                                class="form-control"
+                                className="form-control"
                             />
                         </div>
 
-                        <div class="form-group">
-                            <label for="Description">Description:</label>
+                        <div className="form-group">
+                            <label htmlFor="Description">Description:</label>
                             <textarea
                                 type="text"
                                 required={true}
                                 name="description"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
-                                class="form-control"
+                                className="form-control"
                                 cols="40" rows="5"
                             />
                         </div>
 
-                        <div class="form-group">
-                            <label for="Address">Address:</label>
+                        <div className="form-group">
+                            <label htmlFor="Address">Address:</label>
                             <input
                                 type="text"
                                 required={true}
                                 name="address"
                                 value={address}
                                 onChange={(e) => setAddress(e.target.value)}
-                                class="form-control"
+                                className="form-control"
                             />
                         </div>
 
-                        <div class="col-lg-2">
+                        <div className="col-lg-2">
                         </div>
-                        <button type="submit" class="btn btn-primary p-3">create shelter</button>
+                        <button type="submit" className="btn btn-primary p-3">create shelter</button>
                     </form>
                 </div>
             </div>
