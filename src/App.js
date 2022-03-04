@@ -12,6 +12,7 @@ import RefugeesPage from './components/RefugeesPage';
 import { AuthContext } from "./context/auth.context"
 import Navbar from "./components/Navbar.js";
 import RefugeeCreate from './components/RefugeeCreate'
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const [shelterArr, setShelterArr] = useState([]);
@@ -106,6 +107,12 @@ function App() {
             <LoginPage />
           </IsAnon> 
         } />
+        <Route path="/profile" element={ 
+          <IsPrivate>
+            <UserProfile />
+          </IsPrivate> 
+        } />
+
 
       </Routes>
     </div>
