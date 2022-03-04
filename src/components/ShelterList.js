@@ -1,9 +1,21 @@
+import { Link } from "react-router-dom"
 
-
-export default function ShelterList(){
+export default function ShelterList(props){
     return(
-        <div className="ShelterList">
-              <h1>Shelter List</h1>
+        <div className="shelterList">
+            <h1>Available Shelters</h1>
+            { props.shelters.map( shelter => {
+                
+                return (
+                    <div className="shelter-summary" key={shelter._id}>
+                        <h2>{shelter.name}</h2>
+                        <h4>{shelter.languages}</h4>
+                        <h4>{shelter.location}</h4>
+                        <Link to={`/shelter/${shelter._id}`}>more Details</Link>
+                    </div>
+                    )
+                })
+            }
         </div>
     )
 }
