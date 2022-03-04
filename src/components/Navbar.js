@@ -19,6 +19,11 @@ function Navbar() {
       </NavLink>
       </li>
       <li className="nav-item">
+      {/* <NavLink className="nav-link" to="/refugee/">
+                Refugees
+      </NavLink> */}
+      </li>
+      <li className="nav-item">
       <NavLink className="nav-link" to="/refugees/">
                 create Refugee
       </NavLink>
@@ -26,6 +31,16 @@ function Navbar() {
       <li className="nav-item">
       <NavLink className="nav-link" to="/shelter/">
                 create Shelter
+      </NavLink>
+      </li>
+      <li className="nav-item">
+      <NavLink className="nav-link" to="/login/">
+                Login
+      </NavLink>
+      </li>
+      <li className="nav-item">
+      <NavLink className="nav-link" to="/Signup/">
+                Signup
       </NavLink>
       </li>
     </ul>
