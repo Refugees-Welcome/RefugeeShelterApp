@@ -16,7 +16,8 @@ export default function ShelterDetails() {
             setDetails(response.data);
         })
         .catch()
-    }, []);
+    }, [id]);
+    
     const renderDetails = (details) =>{
 return(
     <div className="ShelterDetail">

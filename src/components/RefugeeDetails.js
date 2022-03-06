@@ -16,7 +16,7 @@ export default function RefugeeDetails() {
             setDetails(response.data);
         })
         .catch()
-    }, []);
+    }, [id]);
     const renderDetails = (details) =>{
 return(
     <div className="RefugeeDetail">
