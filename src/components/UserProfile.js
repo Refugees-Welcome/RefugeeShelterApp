@@ -6,7 +6,6 @@ export default function UserProfile(props) {
     return (
       <div className="UserProfile">
         <h1> User Profile from {user.username}</h1>
-        <p>{user._id}</p>
     </div>
         
     )
