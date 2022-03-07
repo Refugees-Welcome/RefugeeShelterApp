@@ -48,7 +48,7 @@ export default function CreateRefugee(props) {
               <h1>I'm on search for a shelter</h1>
               <div className="container">
                 <div className="col-lg-1"></div>
-                <div className="col-lg-2">
+                <div className="col-lg-2 mx-auto">
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="Name">Name:</label>
@@ -117,7 +117,7 @@ export default function CreateRefugee(props) {
 
                         <div className="col-lg-2">
                         </div>
-                        <button type="submit" className="btn btn-primary p-3">create search</button>
+                        <button type="submit" className="btn btn-primary p-3 m-4">create search</button>
                     </form>
                 </div>
             </div>
