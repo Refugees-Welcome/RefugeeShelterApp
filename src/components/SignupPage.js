@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../context/auth.context"
 
 function SignupPage(props) {
 
@@ -8,7 +9,7 @@ function SignupPage(props) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
-
+  const {storeToken,authenticateUser}= useContext(AuthContext)
   const navigate = useNavigate();
   
   const handle = (e) => setUsername(e.target.value);
@@ -25,8 +26,10 @@ function SignupPage(props) {
     }
 
     axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`, userDetails)
-      .then( () => {
-        navigate("/login");
+      .then( (response) => {
+        storeToken(response.data.authToken);
+        authenticateUser();
+        navigate("/");
       })
       .catch( error => {
         const msg = error.response.data.errorMessage;

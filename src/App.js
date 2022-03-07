@@ -84,8 +84,13 @@ function App() {
  
       <Route path="/shelter/:id" element={
           <IsPrivate>
-            <ShelterEdit />
-            {/* <ShelterDetails /> */}
+            <ShelterDetails />
+          </IsPrivate>
+        } /> 
+
+        <Route path="/shelterEdit/:id" element={
+          <IsPrivate>
+            <ShelterEdit shelter={shelterArr}/>
           </IsPrivate>
         } /> 
 
