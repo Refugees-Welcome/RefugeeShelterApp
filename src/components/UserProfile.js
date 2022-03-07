@@ -6,21 +6,30 @@ import axios from "axios";
 export default function UserProfile(props) {
 
     const {user} = useContext(AuthContext);
-//     const [content, setContent] = useState(undefined);
-//     const { getToken } = useContext(AuthContext);
-//     const storedToken = getToken();
-//     useEffect((shelter) => {
-//       axios.get(`${process.env.REACT_APP_API_URL}/shelter/`, { headers: { Authorization: `Bearer ${storedToken}` } })
-//       .then(response => {
-//       setContent = response.data.filter(e=> {e.author === user._id})
-//     })
-//     .catch()
-//     },[])
+    const [content, setContent] = useState(undefined);
+    
+    useEffect(()=>{
+        props.shelter.filter(
+        shelter=> {
+          if(shelter.author._id === user._id)
+          {
+            setContent(shelter)
+        return 
+        
+      }
+      })
+   },[])
     return (
       <div className="UserProfile">
         <h1> User Profile from {user.username}</h1>
-         {/* <Link to={`/shelter/${content._id}`}>edit: {content.name}</Link> */}
+        {/* {props.shelter.filter(
+        shelter=> {
+          if(shelter.author._id === user._id)
+          {setContent(shelter)
+            return <Link to={`/shelter/${content._id}`}>edit: {content.name}</Link> 
+          }})
+        } */}
+        {content?  <Link to={`/shelter/${content._id}`}>edit: {content.name}</Link>: <p>currently no shelters</p>}
       </div>
-        
     )
 }

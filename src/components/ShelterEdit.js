@@ -4,29 +4,25 @@ import { useNavigate } from "react-router";
 import { AuthContext } from "../context/auth.context"
 import { useParams } from "react-router-dom"
 
-export default function ShelterEdit() {
 
-
-    const { id } = useParams();
-    const [details, setDetails] = useState(undefined);
+export default function ShelterEdit(props) {
+    const { id } = useParams(); 
+    
     const { getToken } = useContext(AuthContext);
     const storedToken = getToken();
+    const [shelter, setShelter] = useState ("")
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [languages, setLanguages] = useState("");
     const [contactInfo, setContactInfo] = useState("");
     const [description, setDescription] = useState("");
-    // const [available, setAvailable] = useState(true);
-    const [address, setAddress] = useState("");
+    const [address, setAddress] = useState(""); 
+    const [available, setAvailable] = useState(true);
     const [error, setErrorMessage] = useState("");
 
     useEffect(() => {
-
-        axios.get(`${process.env.REACT_APP_API_URL}/shelter/` + id, { headers: { Authorization: `Bearer ${storedToken}` } })
-            .then(response => {
-                setDetails(response.data);
-            })
-            .catch()
+    const findShelter = props.shelter.find(e => {return e._id === id})
+    setShelter(findShelter) 
     }, []);
 
     const handleLoginSubmit = (e) => {
@@ -39,9 +35,9 @@ export default function ShelterEdit() {
             address: address
         }
  
-        axios.post(`${process.env.REACT_APP_API_URL}/refugee/` + id, { headers: { Authorization: `Bearer ${storedToken}` } })
+        axios.put(`${process.env.REACT_APP_API_URL}/shelter/${id}`, shelterDetails, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(response => {
-                setDetails(response.data);
+                setShelter(response.data);
                 navigate("/");
             })
             .catch(error => {
@@ -50,14 +46,8 @@ export default function ShelterEdit() {
                 setErrorMessage(msg);
             });
     };
-// Idea
-//    const onTodoChange(value){
-//         this.setName({
-//              name: value
-//         });
-//     }
 
-    const renderDetails = (details) => {
+    const renderDetails = (shelter) => {
         return (
             <div className="ShelterEdit">
                 <h1>I have a shelter that I can share</h1>
@@ -71,7 +61,7 @@ export default function ShelterEdit() {
                                     type="text"
                                     required={true}
                                     name="Name"
-                                    value={details.name}
+                                    value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     className="form-control"
                                     id="Name"
@@ -85,7 +75,7 @@ export default function ShelterEdit() {
                                     type="text"
                                     required={true}
                                     name="Languages"
-                                    value={details.languages}
+                                    value={languages}
                                     onChange={(e) => setLanguages(e.target.value)}
                                     className="form-control"
                                 />
@@ -98,7 +88,7 @@ export default function ShelterEdit() {
                                     type="text"
                                     required={true}
                                     name="contactInfo"
-                                    value={details.contactInfo}
+                                    value={contactInfo}
                                     onChange={(e) => setContactInfo(e.target.value)}
                                     className="form-control"
                                 />
@@ -111,7 +101,7 @@ export default function ShelterEdit() {
                                     type="text"
                                     required={true}
                                     name="description"
-                                    value={details.description}
+                                    value={description}
                                     onChange={(e) => setDescription(e.target.value)}
                                     className="form-control"
                                     cols="40" rows="5"
@@ -125,7 +115,7 @@ export default function ShelterEdit() {
                                     type="text"
                                     required={true}
                                     name="address"
-                                    value={details.address}
+                                    value={address}
                                     onChange={(e) => setAddress(e.target.value)}
                                     className="form-control"
                                 />
@@ -143,8 +133,8 @@ export default function ShelterEdit() {
     }
     return (
         <section className="ShelterDetails">
-            {details ?
-                renderDetails(details) :
+            {shelter ?
+                renderDetails(shelter) :
                 <p>loading....</p>
             }
         </section>
