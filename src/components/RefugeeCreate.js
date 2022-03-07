@@ -6,7 +6,7 @@ import { AuthContext } from "../context/auth.context"
 export default function CreateRefugee(props) {
 
     const navigate = useNavigate();
-
+    const {user} = useContext(AuthContext);
     const [name, setName] = useState("");
     const [languages, setLanguages] = useState("");
     const [contactInfo, setContactInfo] = useState("");
@@ -25,6 +25,7 @@ export default function CreateRefugee(props) {
             languages,
             contactInfo,
             description,
+            author: user._id,
             // onSearch, 
             currentlyBasedIn,
         };
@@ -42,75 +43,84 @@ export default function CreateRefugee(props) {
             })
             .catch(e => console.log("error creating new refugee...", e))
     }
+    return(
+        <div className="RefugeeCreate">
+              <h1>I'm on search for a shelter</h1>
+              <div className="container">
+                <div className="col-lg-1"></div>
+                <div className="col-lg-2">
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="Name">Name:</label>
+                            <input
+                                type="text"
+                                required={true}
+                                name="Name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                className="form-control"
+                                id="Name"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="Languages">Languages:</label>
+                            <input htmlFor="Name"
+                                type="text"
+                                required={true}
+                                name="Languages"
+                                value={languages}
+                                onChange={(e) => setLanguages(e.target.value)}
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="ContactInfo">ContactInfo:</label>
+                            <input
+                                type="text"
+                                required={true}
+                                name="contactInfo"
+                                value={contactInfo}
+                                onChange={(e) => setContactInfo(e.target.value)}
+                                className="form-control"
+                            />
+                        </div>
 
-    return (
-        <div className="CreateRefugee">
-            <h1>List as Refugee on Search</h1>
+                        <div className="form-group">
+                            <label htmlFor="Description">Description:</label>
+                            <textarea
+                                type="text"
+                                required={true}
+                                name="description"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                className="form-control"
+                                cols="40" rows="5"
+                            />
+                        </div>
 
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>
-                        Name:
-                        <input
-                            type="text"
-                            name="name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                    </label>
+                        <div className="form-group">
+                            <label htmlFor="currentlyBasedIn">currently in:</label>
+                            <input
+                                type="text"
+                                required={true}
+                                name="currentlyBasedIn"
+                                value={currentlyBasedIn}
+                                onChange={(e) => setBasedIn(e.target.value)}
+                                className="form-control"
+                            />
+                        </div>
+                         {/* <button type="onSearch" value={onSearch} 
+//                     onClick={ () => { this.changeText("newtext")}  } 
+//                     onChange={(e) => setOnSearch(e.target.value)}>
+//                     {onSearch} 
+//                 </button> */}
+
+                        <div className="col-lg-2">
+                        </div>
+                        <button type="submit" className="btn btn-primary p-3">create search</button>
+                    </form>
                 </div>
-                <div>
-                    <label>
-                        Languages:
-                        <input
-                            type="text"
-                            name="languages"
-                            value={languages}
-                            onChange={(e) => setLanguages(e.target.value)}
-                        />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Contact info:
-                        <input
-                            type="text"
-                            name="contactInfo"
-                            value={contactInfo}
-                            onChange={(e) => setContactInfo(e.target.value)}
-                        />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Description:
-                        <textarea
-                            type="text"
-                            name="description"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                        />
-                    </label>
-                </div>
-            {/* <button type="onSearch" value={onSearch} 
-                    onClick={ () => { this.changeText("newtext")}  } 
-                    onChange={(e) => setOnSearch(e.target.value)}>
-                    {onSearch} 
-                </button> */}
-
-                <label>
-                    currently in:
-                    <input
-                        type="text"
-                        name="currentlyBasedIn"
-                        value={currentlyBasedIn}
-                        onChange={(e) => setBasedIn(e.target.value)}
-                    />
-                </label>
-
-                <button type="submit">Submit</button>
-            </form>
-
+            </div>
         </div>
     )
 }

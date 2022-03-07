@@ -41,7 +41,11 @@ function Navbar() {
       <NavLink className="nav-link" to="/profile">
                 User
       </NavLink>
-      </li>
+      </li> 
+        &nbsp;
+          <button onClick={logOutUser}>Logout</button>
+        &nbsp;
+          {/* <span>{user && user.username}</span> */}
       </>
       }
       { !isLoggedIn && 
@@ -58,6 +62,7 @@ function Navbar() {
       </li>
       </>
     }
+    
     </ul>
   </div>
 </nav>

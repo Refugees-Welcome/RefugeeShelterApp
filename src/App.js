@@ -14,6 +14,8 @@ import { AuthContext } from "./context/auth.context"
 import Navbar from "./components/Navbar.js";
 import RefugeeCreate from './components/RefugeeCreate'
 import UserProfile from "./components/UserProfile";
+import ShelterDetails from "./components/ShelterDetails";
+import RefugeeDetails from "./components/RefugeeDetails";
 
 function App() {
   const [shelterArr, setShelterArr] = useState([]);
@@ -79,14 +81,22 @@ function App() {
             <ShelterCreate updateShelter={fetchShelter} />
           </IsPrivate>
         } /> 
-
+ 
       <Route path="/shelter/:id" element={
-            <ShelterEdit updateShelter={fetchShelter} />
+          <IsPrivate>
+            <ShelterEdit />
+            {/* <ShelterDetails /> */}
+          </IsPrivate>
         } /> 
 
         <Route path="/refugee" element={
           <IsPrivate>
             <RefugeesPage  refugees={refugeesArr}/>
+          </IsPrivate>
+        } /> 
+         <Route path="/refugees/:id" element={
+          <IsPrivate>
+            <RefugeeDetails />
           </IsPrivate>
         } /> 
         <Route path="/refugee/new" element={
@@ -108,7 +118,7 @@ function App() {
         } />
         <Route path="/profile" element={ 
           <IsPrivate>
-            <UserProfile />
+            <UserProfile shelter={shelterArr}/>
           </IsPrivate>
         } />
 

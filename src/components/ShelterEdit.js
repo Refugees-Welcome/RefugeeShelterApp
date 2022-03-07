@@ -1,15 +1,16 @@
 import axios from "axios";
-import { useContext, useState, useEffect} from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../context/auth.context"
 import { useParams } from "react-router-dom"
 
-export default function EditProject(props) {
+export default function ShelterEdit() {
 
     const { id } = useParams();
-
+    const [details, setDetails] = useState(undefined);
+    const { getToken } = useContext(AuthContext);
+    const storedToken = getToken();
     const navigate = useNavigate();
-
     const [name, setName] = useState("");
     const [languages, setLanguages] = useState("");
     const [contactInfo, setContactInfo] = useState("");
@@ -18,40 +19,42 @@ export default function EditProject(props) {
     const [address, setAddress] = useState("");
     const [error, setErrorMessage] = useState("");
 
-    const [data, setData] = useState("");
-    const {user} = useContext(AuthContext);
-    const { getToken } = useContext(AuthContext);
-    console.log("shelterEdit");
-
     useEffect(() => {
-        const storedToken = getToken();
-        axios
-          .get(`${process.env.REACT_APP_API_URL}/shelter/` + id,
-          { headers: { Authorization: `Bearer ${storedToken}`} })
-          .then((response) => setData(response.data))
-          .catch((err) => console.log(err));
-      }, []);
+
+        axios.get(`${process.env.REACT_APP_API_URL}/shelter/` + id, { headers: { Authorization: `Bearer ${storedToken}` } })
+            .then(response => {
+                setDetails(response.data);
+            })
+            .catch()
+    }, []);
 
     const handleLoginSubmit = (e) => {
-      e.preventDefault();
-      const shelterDetails = {
-        name: name,
-        languages: languages,
-        contactInfo: contactInfo,
-        description: description,
-        address: address
-      }
-      
-      axios.post(`${process.env.REACT_APP_API_URL}/shelter/` + id, shelterDetails)
-        .then( () => {
-          navigate("/");
-        })
-        .catch( error => {
-          const msg = error.response.data.errorMessage;
-          console.log("error editing new user...", msg);
-          setErrorMessage(msg);
-        });
+        e.preventDefault();
+        const shelterDetails = {
+            name: name,
+            languages: languages,
+            contactInfo: contactInfo,
+            description: description,
+            address: address
+        }
+ 
+        axios.post(`${process.env.REACT_APP_API_URL}/refugee/` + id, { headers: { Authorization: `Bearer ${storedToken}` } })
+            .then(response => {
+                setDetails(response.data);
+                navigate("/");
+            })
+            .catch(error => {
+                const msg = error.response.data.errorMessage;
+                console.log("error editing new user...", msg);
+                setErrorMessage(msg);
+            });
     };
+// Idea
+//    const onTodoChange(value){
+//         this.setName({
+//              name: value
+//         });
+//     }
 
     return(
         <div className="ShelterEdit">
@@ -122,12 +125,21 @@ export default function EditProject(props) {
                             />
                         </div>
 
-                        <div className="col-lg-2">
-                        </div>
-                        <button type="submit" className="btn btn-primary p-3">create shelter</button>
-                    </form>
+                            <div className="col-lg-2">
+                            </div>
+                            <button type="submit" className="btn btn-primary p-3">create shelter</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        )
+    }
+    return (
+        <section className="ShelterDetails">
+            {details ?
+                renderDetails(details) :
+                <p>loading....</p>
+            }
+        </section>
     )
 }
