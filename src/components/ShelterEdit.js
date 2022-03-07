@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom"
 
 export default function EditProject(props) {
 
-    const { Id } = useParams();
+    const { id } = useParams();
 
     const navigate = useNavigate();
 
@@ -18,13 +18,16 @@ export default function EditProject(props) {
     const [address, setAddress] = useState("");
     const [error, setErrorMessage] = useState("");
 
-    const [data, setData] = useState();
-
+    const [data, setData] = useState("");
+    const {user} = useContext(AuthContext);
+    const { getToken } = useContext(AuthContext);
     console.log("shelterEdit");
 
     useEffect(() => {
+        const storedToken = getToken();
         axios
-          .get(`${process.env.REACT_APP_API_URL}/shelter/` + Id)
+          .get(`${process.env.REACT_APP_API_URL}/shelter/` + id,
+          { headers: { Authorization: `Bearer ${storedToken}`} })
           .then((response) => setData(response.data))
           .catch((err) => console.log(err));
       }, []);
@@ -38,8 +41,8 @@ export default function EditProject(props) {
         description: description,
         address: address
       }
-  
-      axios.post(`${process.env.REACT_APP_API_URL}/shelter/:id`, shelterDetails)
+      
+      axios.post(`${process.env.REACT_APP_API_URL}/shelter/` + id, shelterDetails)
         .then( () => {
           navigate("/");
         })
@@ -52,13 +55,13 @@ export default function EditProject(props) {
 
     return(
         <div className="ShelterEdit">
-              <h1>I have a shelter that I can share</h1>
+              <h1>Edit Shelter:</h1>
               <div className="container">
                 <div className="col-lg-1"></div>
                 <div className="col-lg-2">
                     <form onSubmit={handleLoginSubmit}>
                         <div className="form-group">
-                            <label for="Name">Name:</label>
+                            <label htmlFor="Name">Name:</label>
                             <input
                                 type="text"
                                 required={true}
@@ -71,8 +74,8 @@ export default function EditProject(props) {
                         </div>
 
                         <div className="form-group">
-                            <label for="Languages">Languages:</label>
-                            <input for="Name"
+                            <label htmlFor="Languages">Languages:</label>
+                            <input htmlFor="Name"
                                 type="text"
                                 required={true}
                                 name="Languages"
@@ -83,7 +86,7 @@ export default function EditProject(props) {
                         </div>
 
                         <div className="form-group">
-                            <label for="ContactInfo">ContactInfo:</label>
+                            <label htmlFor="ContactInfo">ContactInfo:</label>
                             <input
                                 type="text"
                                 required={true}
@@ -95,7 +98,7 @@ export default function EditProject(props) {
                         </div>
 
                         <div className="form-group">
-                            <label for="Description">Description:</label>
+                            <label htmlFor="Description">Description:</label>
                             <textarea
                                 type="text"
                                 required={true}
@@ -108,7 +111,7 @@ export default function EditProject(props) {
                         </div>
 
                         <div className="form-group">
-                            <label for="Address">Address:</label>
+                            <label htmlFor="Address">Address:</label>
                             <input
                                 type="text"
                                 required={true}
