@@ -56,7 +56,7 @@ export default function ShelterEdit(props) {
                     <div className="col-lg-2">
                         <form onSubmit={handleLoginSubmit}>
                             <div className="form-group">
-                                <label for="Name">Name:
+                                <label htmlFor="Name">Name:
                                 <input
                                     type="text"
                                     required={true}
@@ -70,8 +70,8 @@ export default function ShelterEdit(props) {
                             </div>
 
                             <div className="form-group">
-                                <label for="Languages">Languages:
-                                <input for="Name"
+                                <label htmlFor="Languages">Languages:
+                                <input htmlFor="Name"
                                     type="text"
                                     required={true}
                                     name="Languages"
@@ -83,7 +83,7 @@ export default function ShelterEdit(props) {
                             </div>
 
                             <div className="form-group">
-                                <label for="ContactInfo">Contact Info:
+                                <label htmlFor="ContactInfo">Contact Info:
                                 <input
                                     type="text"
                                     required={true}
@@ -96,7 +96,7 @@ export default function ShelterEdit(props) {
                             </div>
 
                             <div className="form-group">
-                                <label for="Description">Description:
+                                <label htmlFor="Description">Description:
                                 <textarea
                                     type="text"
                                     required={true}
@@ -110,7 +110,7 @@ export default function ShelterEdit(props) {
                             </div>
 
                             <div className="form-group">
-                                <label for="Address">Address:
+                                <label htmlFor="Address">Address:
                                 <input
                                     type="text"
                                     required={true}
