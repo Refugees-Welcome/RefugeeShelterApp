@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-
 function SignupPage(props) {
 
   const [username, setUsername] = useState("");
@@ -38,13 +37,16 @@ function SignupPage(props) {
 
   return (
     <div className="SignupPage">
+    <div className="container">
+      <div className="col-lg-1"></div>
+       <div className="col-lg-2 mx-auto"></div>
       <h1>Sign Up</h1>
 
       {errorMessage && <p className="error">{errorMessage}</p>}
 
       <form onSubmit={handleSignupSubmit}>
-        
-        <label>
+      <div className="form-group">
+        <label htmlFor="username">
           Username:
           <input
             type="text"
@@ -54,8 +56,10 @@ function SignupPage(props) {
             onChange={handle}
           />
         </label>
+        </div>
 
-        <label>
+        <div className="form-group">
+        <label htmlFor="email">
           Email:
           <input
             type="text"
@@ -65,8 +69,10 @@ function SignupPage(props) {
             onChange={handleEmail}
           />
         </label>
+        </div>
 
-        <label>
+        <div className="form-group">
+        <label htmlFor="password">
           Password:
           <input
             type="password"
@@ -76,12 +82,14 @@ function SignupPage(props) {
             onChange={handlePassword}
           />
         </label>
+        </div>
 
         <button type="submit">Register</button>
       </form>
 
       <p>Already have account?</p>
       <Link to={"/login"}> Login</Link>
+    </div>
     </div>
   )
 }
