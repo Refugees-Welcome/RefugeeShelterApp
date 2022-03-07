@@ -4,7 +4,7 @@ export default function ShelterList(props){
     return(
         <div className="shelterList">
             <h1>Available Shelters</h1>
-
+            {/* <input type = "text" placeholder = "Search..."></input> */}
             { props.shelters.map( shelter => {
                 return (
                     <div className="shelter-summary" key={shelter._id}>

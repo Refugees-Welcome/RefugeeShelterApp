@@ -5,7 +5,7 @@ import { AuthContext } from "../context/auth.context"
 export default function CreateProject(props) {
 
     const navigate = useNavigate();
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [name, setName] = useState("");
     const [languages, setLanguages] = useState("");
     const [contactInfo, setContactInfo] = useState("");
@@ -15,37 +15,37 @@ export default function CreateProject(props) {
     const [error, setErrorMessage] = useState("");
 
     const { getToken } = useContext(AuthContext);
-    
+
     const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    const shelterDetails = {
-        name: name,
-        languages: languages,
-        contactInfo: contactInfo,
-        description: description,
-        author: user._id,
-        // available,
-        address: address
-      };
-      const storedToken = getToken();
+        e.preventDefault();
 
-      axios.post(
-        `${process.env.REACT_APP_API_URL}/shelter`,
-        shelterDetails,
-        { headers: { Authorization: `Bearer ${storedToken}` } }
-    )
-        .then(response => {
-            props.updateShelter();
-            navigate("/");
-        })
-        .catch(error => console.log("error creating new shelter...", error))
-}
+        const shelterDetails = {
+            name: name,
+            languages: languages,
+            contactInfo: contactInfo,
+            description: description,
+            author: user._id,
+            // available,
+            address: address
+        };
+        const storedToken = getToken();
 
-    return(
+        axios.post(
+            `${process.env.REACT_APP_API_URL}/shelter`,
+            shelterDetails,
+            { headers: { Authorization: `Bearer ${storedToken}` } }
+        )
+            .then(response => {
+                props.updateShelter();
+                navigate("/");
+            })
+            .catch(error => console.log("error creating new shelter...", error))
+    }
+
+    return (
         <div className="ShelterCreate">
-              <h1>I have a shelter that I can share</h1>
-              <div className="container">
+            <h1>I have a shelter that I can share</h1>
+            <div className="container">
                 <div className="col-lg-1"></div>
                 <div className="col-lg-2">
                     <form onSubmit={handleSubmit}>

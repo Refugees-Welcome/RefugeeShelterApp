@@ -22,21 +22,21 @@ function App() {
   const [refugeesArr, setRefugeesArr] = useState([]);
   const { isLoggedIn, getToken } = useContext(AuthContext);
 
-  useEffect( () => {
+  useEffect(() => {
     axios.get(
-        `${process.env.REACT_APP_API_URL}/shelter`,
-      )
+      `${process.env.REACT_APP_API_URL}/shelter`,
+    )
       .then(response => {
         setShelterArr(response.data);
       })
       .catch(e => console.log("error getting list of shelter...", e));
   }, []);
 
-  useEffect( () => {
+  useEffect(() => {
     fetchShelter();
   }, [isLoggedIn]);
 
-  useEffect( () => {
+  useEffect(() => {
     fetchRefugee();
   }, [isLoggedIn]);
 
@@ -45,9 +45,9 @@ function App() {
     const storedToken = getToken();
 
     axios.get(
-        `${process.env.REACT_APP_API_URL}/shelter`,
-        { headers: { Authorization: `Bearer ${storedToken}` } }
-      )
+      `${process.env.REACT_APP_API_URL}/shelter`,
+      { headers: { Authorization: `Bearer ${storedToken}` } }
+    )
       .then(response => {
         setShelterArr(response.data);
       })
@@ -59,9 +59,9 @@ function App() {
     const storedToken = getToken();
 
     axios.get(
-        `${process.env.REACT_APP_API_URL}/refugee`,
-        { headers: { Authorization: `Bearer ${storedToken}` } }
-      )
+      `${process.env.REACT_APP_API_URL}/refugee`,
+      { headers: { Authorization: `Bearer ${storedToken}` } }
+    )
       .then(response => {
         setRefugeesArr(response.data);
       })
@@ -72,62 +72,60 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path="/" element={ 
-            <ShelterList shelters={shelterArr}/> 
+        <Route path="/" element={
+          <ShelterList shelters={shelterArr} />
         } />
 
-      <Route path="/shelter/new" element={
+        <Route path="/shelter/new" element={
           <IsPrivate>
             <ShelterCreate updateShelter={fetchShelter} />
           </IsPrivate>
-        } /> 
- 
-      <Route path="/shelter/:id" element={
+        } />
+
+        <Route path="/shelter/:id" element={
           <IsPrivate>
             <ShelterDetails />
           </IsPrivate>
-        } /> 
+        } />
 
         <Route path="/shelterEdit/:id" element={
           <IsPrivate>
-            <ShelterEdit shelter={shelterArr}/>
+            <ShelterEdit shelter={shelterArr} updateShelter={fetchShelter} />
           </IsPrivate>
-        } /> 
+        } />
 
         <Route path="/refugee" element={
           <IsPrivate>
-            <RefugeesPage  refugees={refugeesArr}/>
+            <RefugeesPage refugees={refugeesArr} />
           </IsPrivate>
-        } /> 
-         <Route path="/refugees/:id" element={
+        } />
+        <Route path="/refugees/:id" element={
           <IsPrivate>
             <RefugeeDetails />
           </IsPrivate>
-        } /> 
+        } />
         <Route path="/refugee/new" element={
           <IsPrivate>
-            <RefugeeCreate  updateRefugee={fetchRefugee}/>
+            <RefugeeCreate updateRefugee={fetchRefugee} />
           </IsPrivate>
         } />
-        
-        <Route path="/signup" element={ 
+
+        <Route path="/signup" element={
           <IsAnon>
             <SignupPage />
-          </IsAnon>  
+          </IsAnon>
         } />
 
-        <Route path="/login" element={ 
+        <Route path="/login" element={
           <IsAnon>
             <LoginPage />
-          </IsAnon> 
+          </IsAnon>
         } />
-        <Route path="/profile" element={ 
+        <Route path="/profile" element={
           <IsPrivate>
-            <UserProfile shelter={shelterArr}/>
+            <UserProfile shelter={shelterArr} />
           </IsPrivate>
         } />
-
-
       </Routes>
     </div>
   );
