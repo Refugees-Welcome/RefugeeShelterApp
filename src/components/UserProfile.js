@@ -14,7 +14,6 @@ export default function UserProfile(props) {
         
           return setAuthorShelters(userFilter)
         
-      
   }, [])
   if (user === null) {
     return (<div>loading…</div>);
