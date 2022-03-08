@@ -14,7 +14,7 @@ export default function UserProfile(props) {
         console.log("props.shelter....", props.shelter)
 
           const userFilter = props.shelter.filter(
-            (shelter) => shelter.author._id === user._id
+            (e) => e.author._id === user._id
           );
 
           return setAuthorShelters(userFilter);
