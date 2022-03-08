@@ -23,6 +23,7 @@ export default function ShelterEdit(props) {
     const [error, setErrorMessage] = useState("");
 
     useEffect(() => {
+        
     const findShelter = props.shelter.find(e => {return e._id === id})
     setShelter(findShelter) 
     }, []);

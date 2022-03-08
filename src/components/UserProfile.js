@@ -2,26 +2,37 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext, AuthProviderWrapper } from "../context/auth.context"
 import { Link } from "react-router-dom";
 
-
 export default function UserProfile(props) {
-
+ 
   const { user } = useContext(AuthContext);
-
+  // const { isLoggedIn, isLoading } = useContext(AuthContext);
   const [authorShelters, setAuthorShelters] = useState([])
   
   useEffect(() => {
-    if(user){
+    if(user && props.shelter){
+        console.log("user....", user)
+        console.log("props.shelter....", props.shelter)
+
           const userFilter = props.shelter.filter(
             (shelter) => shelter.author._id === user._id
           );
 
           return setAuthorShelters(userFilter);
     } 
-  }, [user])
+  }, [user, props.shelter])
   
 if (user === null) {
     return (<div>loading…</div>);
   }
+
+
+
+// if (isLoading) {
+//   return <p>Loading ...</p>
+// }
+
+
+
 
   return (
     <div className="UserProfile">

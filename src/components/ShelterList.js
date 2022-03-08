@@ -33,7 +33,6 @@ export default function ShelterList(props){
 
             { props.shelters.map( shelter => {
                 return (
-                    <>
                     <div className="shelter-summary" key={shelter._id}>
                         <h2>{shelter.name}</h2>
                         <h4>Languages: {shelter.languages}</h4>
@@ -41,7 +40,7 @@ export default function ShelterList(props){
                         <Link key={shelter._id} to={`/shelter/${shelter._id}`}>more Details</Link>
                         <br></br>
                     </div>
-                </>)
+                )
             }
 
             )}
