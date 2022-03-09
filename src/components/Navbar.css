@@ -1,0 +1,12 @@
+.navbar{
+    background-color: #e7f0b7;
+    border: 5px solid rgb(234, 250, 4);
+    border-radius: 10px;
+}
+.logOutButton{
+    align-self: flex-end;
+}
+.icon{
+    width: 200px;
+    background-repeat: no-repeat;
+}

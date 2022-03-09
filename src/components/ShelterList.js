@@ -2,8 +2,9 @@ import { Link } from "react-router-dom"
 import './map.css';
 import { useState, useRef, useEffect } from "react";
 import GoogleMap from './maps';
+import './list.css';
 
-export default function ShelterList(props){
+export default function ShelterList(props) {
 
     var ref = useRef(null);
     const [map, setMap] = useState();
@@ -16,11 +17,15 @@ export default function ShelterList(props){
 
     const render = (status) => {
         return <h1>{status}</h1>;
-      };
-    
+    };
+
     return (
         <div className="shelterList">
-            <h1>Available Shelters</h1>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+            <h1>Refugees Welcome</h1>
             <GoogleMap
                 onLoad={map => {
                     const bounds = new window.google.maps.LatLngBounds();
@@ -30,20 +35,35 @@ export default function ShelterList(props){
                     // do your stuff before map is unmounted
                 }}
             />
+            <h1>Available Shelters</h1>
 
+            {/* <div className="row">
             { props.shelters.map( shelter => {
-                return (
-                    <div className="shelter-summary" key={shelter._id}>
-                        <h2>{shelter.name}</h2>
-                        <h4>Languages: {shelter.languages}</h4>
-                        <h4>Address: {shelter.address}</h4>
-                        <Link key={shelter._id} to={`/shelter/${shelter._id}`}>more Details</Link>
-                        <br></br>
-                    </div>
+                return ( <div className="col-4" key={shelter._id}><h2>{shelter.name}</h2>
+                <h4>Languages: {shelter.languages}</h4>
+                <h4>Address: {shelter.address}</h4>
+                <Link key={shelter._id} to={`/shelter/${shelter._id}`}>more Details</Link></div>
                 )
             }
-
             )}
+</div> */}
+            <div className="container">
+                <div className="row d-flex justify-content-center" >
+
+                    {props.shelters.map(shelter => {
+                        return (
+                            <div className=" col-sm-3 rounded border border-warning  shelter-summary mapped" key={shelter._id}>
+                                <h2>{shelter.name}</h2>
+                                <h4>Languages: {shelter.languages}</h4>
+                                <h4>Address: {shelter.address}</h4>
+                                <Link className="listLink" key={shelter._id} to={`/shelter/${shelter._id}`}><div class="d-grid gap-2 "><button className="btn btn-warning  listButton">get Details</button></div></Link>
+                            </div>
+                        )
+                    }
+
+                    )}
+                </div>
             </div>
-            )
-    }
+        </div>
+    )
+}

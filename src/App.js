@@ -11,7 +11,7 @@ import ShelterCreate from './components/ShelterCreate';
 import ShelterEdit from './components/ShelterEdit';
 import RefugeesPage from './components/RefugeesPage';
 import { AuthContext } from "./context/auth.context"
-import Navbar from "./components/Navbar.js";
+import Navigation from "./components/Navigation.js";
 import RefugeeCreate from './components/RefugeeCreate'
 import UserProfile from "./components/UserProfile";
 import ShelterDetails from "./components/ShelterDetails";
@@ -70,7 +70,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <Navigation />
       <Routes>
         <Route path="/" element={
           <ShelterList shelters={shelterArr} />

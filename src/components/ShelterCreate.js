@@ -44,7 +44,12 @@ export default function CreateProject(props) {
 
     return (
         <div className="ShelterCreate">
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
             <h1>I have a shelter that I can share</h1>
+            <br></br>
             <div className="container">
                 <div className="col-lg-1"></div>
                 <div className="col-lg-2 mx-auto">
@@ -108,10 +113,9 @@ export default function CreateProject(props) {
                                 className="form-control"
                             />
                         </div>
-
-                        <div className="col-lg-2">
+                        <div className="d-grid gap-2">
+                            <button type="submit" className="btn btn-primary p-3 mt-2">create shelter</button>
                         </div>
-                        <button type="submit" className="btn btn-primary p-3 m-4">create shelter</button>
                     </form>
                 </div>
             </div>

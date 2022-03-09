@@ -6,7 +6,7 @@ import { AuthContext } from "../context/auth.context"
 export default function CreateRefugee(props) {
 
     const navigate = useNavigate();
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [name, setName] = useState("");
     const [languages, setLanguages] = useState("");
     const [contactInfo, setContactInfo] = useState("");
@@ -43,10 +43,14 @@ export default function CreateRefugee(props) {
             })
             .catch(e => console.log("error creating new refugee...", e))
     }
-    return(
+    return (
         <div className="RefugeeCreate">
-              <h1>I'm on search for a shelter</h1>
-              <div className="container">
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+            <h1>I'm on search for a shelter</h1>
+            <div className="container">
                 <div className="col-lg-1"></div>
                 <div className="col-lg-2 mx-auto">
                     <form onSubmit={handleSubmit}>
@@ -109,15 +113,14 @@ export default function CreateRefugee(props) {
                                 className="form-control"
                             />
                         </div>
-                         {/* <button type="onSearch" value={onSearch} 
+                        {/* <button type="onSearch" value={onSearch} 
 //                     onClick={ () => { this.changeText("newtext")}  } 
 //                     onChange={(e) => setOnSearch(e.target.value)}>
 //                     {onSearch} 
 //                 </button> */}
-
-                        <div className="col-lg-2">
+                        <div className="d-grid gap-2">
+                            <button type="submit" className="btn btn-primary p-3 mt-2">list Refugee</button>
                         </div>
-                        <button type="submit" className="btn btn-primary p-3 m-4">create search</button>
                     </form>
                 </div>
             </div>
