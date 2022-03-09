@@ -56,7 +56,7 @@ export default function ShelterList(props) {
                                 <h2>{shelter.name}</h2>
                                 <h4>Languages: {shelter.languages}</h4>
                                 <h4>Address: {shelter.address}</h4>
-                                <Link className="listLink" key={shelter._id} to={`/shelter/${shelter._id}`}><div class="d-grid gap-2 "><button className="btn btn-warning  listButton">get Details</button></div></Link>
+                                <Link className="listLink" key={shelter._id} to={`/shelter/${shelter._id}`}><div className="d-grid gap-2 "><button className="btn btn-warning  listButton">get Details</button></div></Link>
                             </div>
                         )
                     }

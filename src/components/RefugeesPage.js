@@ -21,7 +21,7 @@ export default function RefugeesPage(props) {
                 <h4>Languages: {refugee.languages}</h4>
                 <br></br>
                 <h4>currently in: {refugee.currentlyBasedIn}</h4>
-                <Link className="listLink" to={`/refugees/${refugee._id}`}><div class="d-grid gap-2"><button className="btn btn-warning listButton">get Details</button></div></Link>
+                <Link className="listLink" to={`/refugees/${refugee._id}`}><div className="d-grid gap-2"><button className="btn btn-warning listButton">get Details</button></div></Link>
                 <br></br>
               </div>
             );
