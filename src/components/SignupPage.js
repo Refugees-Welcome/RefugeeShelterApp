@@ -65,7 +65,7 @@ function SignupPage(props) {
         <label htmlFor="email">
           Email:
           <input
-            type="text"
+            type="email"
             required={true}
             name="email"
             value={email}
