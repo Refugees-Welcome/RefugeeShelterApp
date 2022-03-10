@@ -63,7 +63,9 @@ export default function ShelterList(props) {
 
                     )}
                 </div>
+                
             </div>
+            
         </div>
     )
 }

@@ -16,6 +16,7 @@ import RefugeeCreate from './components/RefugeeCreate'
 import UserProfile from "./components/UserProfile";
 import ShelterDetails from "./components/ShelterDetails";
 import RefugeeDetails from "./components/RefugeeDetails";
+import RefugeeEdit from "./components/RefugeeEdit";
 
 function App() {
   const [shelterArr, setShelterArr] = useState([]);
@@ -30,7 +31,7 @@ function App() {
         setShelterArr(response.data);
       })
       .catch(e => console.log("error getting list of shelter...", e));
-  }, []);
+       }, []);
 
   useEffect(() => {
     fetchShelter();
@@ -93,6 +94,11 @@ function App() {
             <ShelterEdit shelter={shelterArr} updateShelter={fetchShelter} />
           </IsPrivate>
         } />
+        <Route path="/refugeeEdit/:id" element={
+          <IsPrivate>
+            <RefugeeEdit refugee={refugeesArr} updateRefugee={fetchShelter} />
+          </IsPrivate>
+        } />
 
         <Route path="/refugee" element={
           <IsPrivate>
@@ -123,7 +129,7 @@ function App() {
         } />
         <Route path="/profile" element={
           <IsPrivate>
-            <UserProfile shelter={shelterArr} />
+            <UserProfile  refugee={refugeesArr} shelter={shelterArr}/>
           </IsPrivate>
         } />
       </Routes>
