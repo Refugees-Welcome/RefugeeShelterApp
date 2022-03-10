@@ -44,76 +44,88 @@ export default function CreateProject(props) {
 
     return (
         <div className="ShelterCreate">
-            <h1>I have a shelter that I can share</h1>
-            <div className="container">
-                <div className="col-lg-1"></div>
-                <div className="col-lg-2 mx-auto">
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group">
+ <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <h1>I have a shelter that i can share</h1>
+             <div className="ShelterEdit">
+                <form onSubmit={handleSubmit}>
+                    <div className="row g-3 d-flex justify-content-center">
+                        
+                        <div className="col-md-6  m-2">
                             <label htmlFor="Name">Name:</label>
-                            <input
-                                type="text"
-                                required={true}
-                                name="Name"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                className="form-control"
-                                id="Name"
-                            />
+                                <input 
+                                    type="text"
+                                    required={true}
+                                    name="Name"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    className="form-control m-2"
+                                    id="Name"
+                                />
+                            
                         </div>
-                        <div className="form-group">
+
+                        <div className="col-md-6  m-2">
                             <label htmlFor="Languages">Languages:</label>
-                            <input htmlFor="Name"
-                                type="text"
-                                required={true}
-                                name="Languages"
-                                value={languages}
-                                onChange={(e) => setLanguages(e.target.value)}
-                                className="form-control"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="ContactInfo">ContactInfo:</label>
-                            <input
-                                type="text"
-                                required={true}
-                                name="contactInfo"
-                                value={contactInfo}
-                                onChange={(e) => setContactInfo(e.target.value)}
-                                className="form-control"
-                            />
+                                <input htmlFor="Name"
+                                    type="text"
+                                    required={true}
+                                    name="Languages"
+                                    value={languages}
+                                    onChange={(e) => setLanguages(e.target.value)}
+                                    className="form-control m-2"
+                                />
+                            
                         </div>
 
-                        <div className="form-group">
+                        <div className="col-md-6  m-2">
+                            <label htmlFor="ContactInfo">Contact Info:</label>
+                                <input
+                                    type="text"
+                                    required={true}
+                                    name="contactInfo"
+                                    value={contactInfo}
+                                    onChange={(e) => setContactInfo(e.target.value)}
+                                    className="form-control m-2"
+                                />
+                            
+                        </div>
+
+                        <div className="col-md-6  m-2">
                             <label htmlFor="Description">Description:</label>
-                            <textarea
-                                type="text"
-                                required={true}
-                                name="description"
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                                className="form-control"
-                                cols="40" rows="5"
-                            />
+                                <textarea
+                                    type="text"
+                                    required={true}
+                                    name="description"
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    className="form-control m-2"
+                                    cols="40" rows="5"
+                                />
+                            
                         </div>
 
-                        <div className="form-group">
+                        <div className="col-md-6  m-2">
                             <label htmlFor="Address">Address:</label>
-                            <input
-                                type="text"
-                                required={true}
-                                name="address"
-                                value={address}
-                                onChange={(e) => setAddress(e.target.value)}
-                                className="form-control"
-                            />
+                                <input
+                                    type="text"
+                                    required={true}
+                                    name="address"
+                                    value={address}
+                                    onChange={(e) => setAddress(e.target.value)}
+                                    className="form-control m-2"
+                                />
+                            
+                        </div><div className="col-md-6  m-2">
+                        <div className="d-grid gap-2">
+                            <button type="submit" className="btn btn-primary p-3 mt-2">list Refugee</button>
                         </div>
-
-                        <div className="col-lg-2">
                         </div>
-                        <button type="submit" className="btn btn-primary p-3 m-4">create shelter</button>
-                    </form>
-                </div>
+                        
+                    </div>
+                </form>
             </div>
         </div>
     )

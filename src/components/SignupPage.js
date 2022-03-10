@@ -9,9 +9,9 @@ function SignupPage(props) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
-  const {storeToken,authenticateUser}= useContext(AuthContext)
+  const { storeToken, authenticateUser } = useContext(AuthContext)
   const navigate = useNavigate();
-  
+
   const handle = (e) => setUsername(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
@@ -26,12 +26,12 @@ function SignupPage(props) {
     }
 
     axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`, userDetails)
-      .then( (response) => {
+      .then((response) => {
         storeToken(response.data.authToken);
         authenticateUser();
         navigate("/");
       })
-      .catch( error => {
+      .catch(error => {
         const msg = error.response.data.errorMessage;
         console.log("error creating new user...", msg);
         setErrorMessage(msg);
@@ -40,26 +40,30 @@ function SignupPage(props) {
 
   return (
     <div className="SignupPage">
-    <div className="container">
-      <div className="col-lg-1"></div>
-       <div className="col-lg-2 mx-auto"></div>
-      <h1>Sign Up</h1>
+      <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+      <div className="container">
+        <div className="col-lg-1"></div>
+        <div className="col-lg-2 mx-auto"></div>
+        <h1>Sign Up</h1>
 
-      {errorMessage && <p className="error">{errorMessage}</p>}
+        {errorMessage && <p className="error">{errorMessage}</p>}
 
-      <form onSubmit={handleSignupSubmit}>
-      <div className="form-group">
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            required={true}
-            name="username"
-            value={username}
-            onChange={handle}
-          />
-        </label>
-        </div>
+        <form onSubmit={handleSignupSubmit}>
+          <div className="form-group">
+            <label htmlFor="username">
+              Username:
+              <input
+                type="text"
+                required={true}
+                name="username"
+                value={username}
+                onChange={handle}
+              />
+            </label>
+          </div>
 
         <div className="form-group">
         <label htmlFor="email">
@@ -74,25 +78,25 @@ function SignupPage(props) {
         </label>
         </div>
 
-        <div className="form-group">
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            required={true}
-            name="password"
-            value={password}
-            onChange={handlePassword}
-          />
-        </label>
-        </div>
+          <div className="form-group">
+            <label htmlFor="password">
+              Password:
+              <input
+                type="password"
+                required={true}
+                name="password"
+                value={password}
+                onChange={handlePassword}
+              />
+            </label>
+          </div>
 
-        <button type="submit">Register</button>
-      </form>
+          <button type="submit">Register</button>
+        </form>
 
-      <p>Already have account?</p>
-      <Link to={"/login"}> Login</Link>
-    </div>
+        <p>Already have account?</p>
+        <Link to={"/login"}> Login</Link>
+      </div>
     </div>
   )
 }

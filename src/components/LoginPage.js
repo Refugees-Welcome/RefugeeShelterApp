@@ -37,7 +37,11 @@ function LoginPage(props) {
   };
 
   return (
-    <div className="LoginPage">
+    <div className="LoginPage p-sm">
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
       <h1>Login</h1>
 
       {errorMessage && <p className="error">{errorMessage}</p>}

@@ -6,7 +6,7 @@ import { AuthContext } from "../context/auth.context"
 export default function CreateRefugee(props) {
 
     const navigate = useNavigate();
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [name, setName] = useState("");
     const [languages, setLanguages] = useState("");
     const [contactInfo, setContactInfo] = useState("");
@@ -43,84 +43,101 @@ export default function CreateRefugee(props) {
             })
             .catch(e => console.log("error creating new refugee...", e))
     }
-    return(
+    return (
+        
         <div className="RefugeeCreate">
-              <h1>I'm on search for a shelter</h1>
-              <div className="container">
-                <div className="col-lg-1"></div>
-                <div className="col-lg-2 mx-auto">
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group">
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+            <h1>I'm on search for a shelter</h1>
+             <div className="ShelterEdit">
+                <h1>Change for Shelter Details</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className="row g-3 d-flex justify-content-center">
+                        
+                        <div className="col-md-6  m-2">
                             <label htmlFor="Name">Name:</label>
-                            <input
-                                type="text"
-                                required={true}
-                                name="Name"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                className="form-control"
-                                id="Name"
-                            />
+                                <input 
+                                    type="text"
+                                    required={true}
+                                    name="Name"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    className="form-control m-2"
+                                    id="Name"
+                                />
+                            
                         </div>
-                        <div className="form-group">
+
+                        <div className="col-md-6  m-2">
                             <label htmlFor="Languages">Languages:</label>
-                            <input htmlFor="Name"
-                                type="text"
-                                required={true}
-                                name="Languages"
-                                value={languages}
-                                onChange={(e) => setLanguages(e.target.value)}
-                                className="form-control"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="ContactInfo">ContactInfo:</label>
-                            <input
-                                type="text"
-                                required={true}
-                                name="contactInfo"
-                                value={contactInfo}
-                                onChange={(e) => setContactInfo(e.target.value)}
-                                className="form-control"
-                            />
+                                <input htmlFor="Name"
+                                    type="text"
+                                    required={true}
+                                    name="Languages"
+                                    value={languages}
+                                    onChange={(e) => setLanguages(e.target.value)}
+                                    className="form-control m-2"
+                                />
+                            
                         </div>
 
-                        <div className="form-group">
+                        <div className="col-md-6  m-2">
+                            <label htmlFor="ContactInfo">Contact Info:</label>
+                                <input
+                                    type="text"
+                                    required={true}
+                                    name="contactInfo"
+                                    value={contactInfo}
+                                    onChange={(e) => setContactInfo(e.target.value)}
+                                    className="form-control m-2"
+                                />
+                            
+                        </div>
+
+                        <div className="col-md-6  m-2">
                             <label htmlFor="Description">Description:</label>
-                            <textarea
-                                type="text"
-                                required={true}
-                                name="description"
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                                className="form-control"
-                                cols="40" rows="5"
-                            />
+                                <textarea
+                                    type="text"
+                                    required={true}
+                                    name="description"
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    className="form-control m-2"
+                                    cols="40" rows="5"
+                                />
+                            
                         </div>
 
-                        <div className="form-group">
-                            <label htmlFor="currentlyBasedIn">currently in:</label>
-                            <input
-                                type="text"
-                                required={true}
-                                name="currentlyBasedIn"
-                                value={currentlyBasedIn}
-                                onChange={(e) => setBasedIn(e.target.value)}
-                                className="form-control"
-                            />
+                        <div className="col-md-6  m-2">
+                            <label htmlFor="Address">currently based near:</label>
+                                <input
+                                    type="text"
+                                    required={true}
+                                    name="address"
+                                    value={currentlyBasedIn}
+                                    onChange={(e) => setBasedIn(e.target.value)}
+                                    className="form-control m-2"
+                                />
+                            
+                        </div><div className="col-md-6  m-2">
+                        <div className="d-grid gap-2">
+                            <button type="submit" className="btn btn-primary p-3 mt-2">list Refugee</button>
                         </div>
-                         {/* <button type="onSearch" value={onSearch} 
-//                     onClick={ () => { this.changeText("newtext")}  } 
-//                     onChange={(e) => setOnSearch(e.target.value)}>
-//                     {onSearch} 
-//                 </button> */}
-
-                        <div className="col-lg-2">
                         </div>
-                        <button type="submit" className="btn btn-primary p-3 m-4">create search</button>
-                    </form>
-                </div>
+                        
+                    </div>
+                </form>
             </div>
         </div>
     )
 }
+                        {/* <button type="onSearch" value={onSearch} 
+//                     onClick={ () => { this.changeText("newtext")}  } 
+//                     onChange={(e) => setOnSearch(e.target.value)}>
+//                     {onSearch} 
+//                 </button> */}
+                       
+                    
+  

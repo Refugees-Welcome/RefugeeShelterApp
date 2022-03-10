@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useState, useRef, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
-export default function ShelterList(props){
+export default function ShelterList(props) {
 
     const render = (status) => {
         return <h1>{status}</h1>;
@@ -19,6 +19,7 @@ export default function ShelterList(props){
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+            <h1>Available Shelters</h1>
 
             {
                 props.shelters.map( shelter => {

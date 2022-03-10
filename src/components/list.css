@@ -1,0 +1,13 @@
+.mapped{
+    background-color: #3054b8;
+    border: 2px;
+    color: rgb(250, 244, 244);
+    margin: 5px 10px ;
+    padding: 5px 50px;
+}
+.listButton{
+    color: #3054b8;
+}
+.listLink{
+    text-decoration: none;
+}

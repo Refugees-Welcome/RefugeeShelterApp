@@ -5,18 +5,39 @@ import { Link } from "react-router-dom";
 export default function UserProfile(props) {
 
   const { user } = useContext(AuthContext);
-
+  // const { isLoggedIn, isLoading } = useContext(AuthContext);
   const [authorShelters, setAuthorShelters] = useState([])
+  const [authorRefugees, setAuthorRefugees] = useState([])
 
   useEffect(() => {
-    const userFilter = props.shelter.filter(shelter => shelter.author._id === user._id)
-        
-          return setAuthorShelters(userFilter)
-        
-  }, [])
+    if (user && props.shelter) {
+      console.log(props)
+      const userFilterShelters = props.shelter.filter(
+        (e) => e.author._id === user._id
+      );
+      return setAuthorShelters(userFilterShelters),console.log(authorShelters)
+    }
+  }, [user, props.shelter])
+
+useEffect(() => {
+
+    if (user && props.refugee) {
+      console.log(props)
+      const userFilterRefugees = props.refugee.filter(
+        (ref) => ref.author._id === user._id
+      );
+      return setAuthorRefugees(userFilterRefugees),console.log(authorRefugees)
+    
+    }
+  }, [user, props.refugee])
+
   if (user === null) {
     return (<div>loading…</div>);
   }
+
+  // if (isLoading) {
+  //   return <p>Loading ...</p>
+  // }
 
   return (
     <div className="UserProfile">
@@ -27,3 +48,29 @@ export default function UserProfile(props) {
     </div>
   )
 }
+
+  // useEffect(() => {
+  //   if (user && props.refugee) {
+  //     const userFilterRefugees = props.refugee.filter(
+  //       (e) => e.author._id === user._id
+  //     );
+  //     return setAuthorRefugees(userFilterRefugees)
+  //   }
+  // }, [user, props.refugee])
+
+  // if (user === null) {
+  //   return (<div>loading…</div>);
+  // }
+
+
+
+  // if (isLoading) {
+  //   return <p>Loading ...</p>
+  // }
+
+   {/* <h2 className="userProfile"> refugees on search you created </h2>
+      {authorRefugees.length === 0 ? <div>no refugees listed</div> :
+        authorRefugees.map(refugee => {
+          return (<div key={refugee._id} className="CreatedRefugees"><Link className="linkCreatedRefugee" to={`/refugeeEdit/${refugee._id}`}><button className="btn btn-primary">edit Refugee: {refugee.name}</button> </Link></div>)
+        })} */}
+      
