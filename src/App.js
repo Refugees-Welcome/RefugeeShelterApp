@@ -34,9 +34,6 @@ function App() {
 
   useEffect(() => {
     fetchShelter();
-  }, [isLoggedIn]);
-
-  useEffect(() => {
     fetchRefugee();
   }, [isLoggedIn]);
 

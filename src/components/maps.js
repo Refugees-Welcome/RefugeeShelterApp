@@ -1,5 +1,6 @@
 import React from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { Marker } from '@react-google-maps/api';
 
 const containerStyle = {
   width: '100vw',
@@ -9,6 +10,11 @@ const containerStyle = {
 const center = {
   lat: 	50.049683,
   lng: 	19.944544
+};
+
+const newMarker1 = {
+  lat: 	53.551086,
+  lng: 	9.993682
 };
 
 function MyComponent() {
@@ -38,7 +44,6 @@ function MyComponent() {
         onUnmount={onUnmount}
       >
         { /* Child components, such as markers, info windows, etc. */ }
-        <></>
       </GoogleMap>
   ) : <></>
 }
