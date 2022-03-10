@@ -22,9 +22,6 @@ export default function ShelterList(props) {
     return (
         <div className="shelterList">
         <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
             <h1>Refugees Welcome</h1>
             <GoogleMap
                 onLoad={map => {

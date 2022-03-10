@@ -7,9 +7,6 @@ export default function RefugeesPage(props) {
     <div className="container">
       <div className="RefugeesPage">
         <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
         <h1> Searching Refugees</h1>
         <br></br>
         <div className="RefugeesList row d-flex justify-content-center">

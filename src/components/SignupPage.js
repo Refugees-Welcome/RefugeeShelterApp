@@ -41,9 +41,6 @@ function SignupPage(props) {
   return (
     <div className="SignupPage">
       <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
       <div className="container">
         <div className="col-lg-1"></div>
         <div className="col-lg-2 mx-auto"></div>

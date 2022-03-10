@@ -151,9 +151,6 @@ export default function ShelterEdit(props) {
     return (
         <section className="ShelterDetails">
         <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
             {
                 renderDetails(shelter)
 

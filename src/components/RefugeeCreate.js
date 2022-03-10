@@ -47,9 +47,6 @@ export default function CreateRefugee(props) {
         
         <div className="RefugeeCreate">
         <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
             <h1>I'm on search for a shelter</h1>
              <div className="ShelterEdit">
                 <h1>Change for Shelter Details</h1>

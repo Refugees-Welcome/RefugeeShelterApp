@@ -9,27 +9,41 @@ export default function UserProfile(props) {
   const [authorShelters, setAuthorShelters] = useState([])
   const [authorRefugees, setAuthorRefugees] = useState([])
 
-  useEffect(() => {
-    if (user && props.shelter) {
-      console.log(props)
-      const userFilterShelters = props.shelter.filter(
-        (e) => e.author._id === user._id
-      );
-      return setAuthorShelters(userFilterShelters),console.log(authorShelters)
-    }
-  }, [user, props.shelter])
+  useEffect(  () => {
+    compareUserShelter()
+    compareUserRefugee()
+}, [])
 
-useEffect(() => {
+const compareUserShelter = ()=>{
+  const userFilterShelters = props.shelter.filter(
+    (e) => e.author._id === user._id
+  );
+  console.log("hier shelter",userFilterShelters)
+  return setAuthorShelters(userFilterShelters),console.log(authorShelters)
+}
 
-    if (user && props.refugee) {
-      console.log(props)
-      const userFilterRefugees = props.refugee.filter(
-        (ref) => ref.author._id === user._id
-      );
-      return setAuthorRefugees(userFilterRefugees),console.log(authorRefugees)
+const compareUserRefugee = ()=>{
+  console.log(props)
+  const userFilterRefugees = props.refugee.filter(
+    (e) => e.author._id === user._id
+  );
+  console.log("hier ref",userFilterRefugees)
+  return setAuthorRefugees(userFilterRefugees),console.log(authorRefugees)
+
+}
+
+
+// useEffect(() => {
+
+//     if (user && props.refugee) {
+//       console.log(props)
+//       const userFilterRefugees = props.refugee.filter(
+//         (ref) => ref.author._id === user._id
+//       );
+//       return setAuthorRefugees(userFilterRefugees),console.log(authorRefugees)
     
-    }
-  }, [user, props.refugee])
+//     }
+//   }, [user, props.refugee])
 
   if (user === null) {
     return (<div>loading…</div>);
@@ -42,9 +56,6 @@ useEffect(() => {
   return (
     <div className="UserProfile">
       <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
       <h1 className="userProfile"> User Profile from {user.username}</h1>
       {authorShelters.length === 0 ? <div>currently no created shelter</div> :
         authorShelters.map(shelter => { 

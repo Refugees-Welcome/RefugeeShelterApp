@@ -62,9 +62,6 @@ export default function ShelterDetails() {
     return (
         <section className="ShelterDetails">
         <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
             {details ?
                 renderDetails(details) :
                 <p>loading....</p>

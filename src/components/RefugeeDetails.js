@@ -64,9 +64,6 @@ export default function RefugeeDetails() {
     return (
         <div className="container">
             <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
             <section className="RefugeeDetails">
                 {details ? renderDetails(details) : <p>loading....</p>}
             </section>
