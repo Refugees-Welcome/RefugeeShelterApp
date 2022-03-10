@@ -22,15 +22,15 @@ function App() {
   const [refugeesArr, setRefugeesArr] = useState([]);
   const { isLoggedIn, getToken } = useContext(AuthContext);
 
-  useEffect(() => {
-    axios.get(
-      `${process.env.REACT_APP_API_URL}/shelter`,
-    )
-      .then(response => {
-        setShelterArr(response.data);
-      })
-      .catch(e => console.log("error getting list of shelter...", e));
-  }, []);
+  // useEffect(() => {
+  //   axios.get(
+  //     `${process.env.REACT_APP_API_URL}/shelter`,
+  //   )
+  //     .then(response => {
+  //       setShelterArr(response.data);
+  //     })
+  //     .catch(e => console.log("error getting list of shelter...", e));
+  // }, []);
 
   useEffect(() => {
     fetchShelter();
