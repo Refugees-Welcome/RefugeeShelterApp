@@ -134,10 +134,9 @@ export default function ShelterCreate(props) {
                                     className="form-control m-2"
                                 />
 
-                        </div><div className="col-md-6  m-2">
-                        <div className="d-grid gap-2">
-                            <button type="submit" className="btn btn-primary p-3 mt-2">list Refugee</button>
-                        </div>
+                 
+                            <button type="submit" className="col-md-6 btn btn-primary ">list Shelter</button>
+                       
                         </div>
                         
                     </div>

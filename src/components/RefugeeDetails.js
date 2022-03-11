@@ -21,34 +21,34 @@ export default function RefugeeDetails() {
     }, [id]);
     const renderDetails = (details) => {
         return (
-            
-            <div className="RefugeeDetail">
+            <div className="ShelterDetail">
             <div className="container d-flex justify-content-between">
                 
                 <div className="col-md-6 rounded border border-warning mapped">
                     <div className="form-group">
-                        <h1 className="Name">Name: <br></br>{details.name}</h1>
+                        <h1 className="Name text-start">Name: <br></br></h1>
+                        <h1 className="text-end mb-4">{details.name}</h1>
 
                     </div>
                     <br></br>
-                    <div className="form-group">
-                        <h4 className="Languages">Languages:<br></br> {details.languages}</h4>
-
+                    <div className="form-group ">
+                        <h4 className="Languages text-start">Languages:<br></br> </h4>
+<h4 className="text-end mb-4">{details.languages}</h4>
                     </div>
                     <br></br>
                     <div className="form-group">
-                        <p className="ContactInfo">ContactInfo:<br></br> {details.contactInfo}</p>
-
+                        <h4 className="ContactInfo text-start">ContactInfo:<br></br> </h4>
+<h4 className="text-end mb-4">{details.contactInfo}</h4>
                     </div>
                     <br></br>
-                    <div className="form-group">
-                        <p className="Description">Description: <br></br>{details.description}</p>
-
+                    <div className="form-group ">
+                        <h4 className="Description text-start">Description: <br></br></h4>
+<h4 className="text-end mb-4">{details.description}</h4>
                     </div>
                     <br></br>
-                    <div className="form-group">
-                        <p className="Address">currently based near:<br></br> {details.currentlyBasedIn}</p>
-
+                    <div className="form-group ">
+                        <h4 className="Address text-start">currently near:<br></br></h4>
+<h4 className="text-end mb-4">{details.currentlyBasedIn}</h4>
                     </div>
                     <br></br>
                     <div className="col-6">
