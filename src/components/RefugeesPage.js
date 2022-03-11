@@ -27,7 +27,7 @@ export default function RefugeesPage(props) {
                   <Card.Title ><h2>{refugee.name}</h2></Card.Title>
                   <Card.Text>
                       <h4>Languages: {refugee.languages}</h4>
-                      <h4>Address: {refugee.address}</h4>
+                      <h4>currently based near: {refugee.currentlyBasedIn}</h4>
 
                       <Link className="listLink" key={refugee._id} to={`/refugees/${refugee._id}`}><Button className="btn btn-warning">get Details</Button></Link>
                   </Card.Text>
