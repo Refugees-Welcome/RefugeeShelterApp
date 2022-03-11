@@ -2,16 +2,6 @@ import React from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { findByLabelText } from '@testing-library/react'; 
 
-const containerStyle = {
-  width: '70%',
-  height: '400px'
-};
-
-const center = {
-  lat: 	51.049683,
-  lng: 	21.944544
-};
-
 function MyComponent() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',

@@ -62,18 +62,18 @@ function SignupPage(props) {
             </label>
           </div>
 
-          <div className="form-group">
-            <label htmlFor="email">
-              Email:
-              <input
-                type="text"
-                required={true}
-                name="email"
-                value={email}
-                onChange={handleEmail}
-              />
-            </label>
-          </div>
+        <div className="form-group">
+        <label htmlFor="email">
+          Email:
+          <input
+            type="email"
+            required={true}
+            name="email"
+            value={email}
+            onChange={handleEmail}
+          />
+        </label>
+        </div>
 
           <div className="form-group">
             <label htmlFor="password">

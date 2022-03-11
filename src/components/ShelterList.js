@@ -1,57 +1,69 @@
 import { Link } from "react-router-dom"
 import { useState, useRef, useEffect } from "react";
-import GoogleMap from './maps';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import axios from "axios";
 import './list.css';
+import './map.css';
+import './ShelterList.css';
 import { Card, Button } from "react-bootstrap";
 export default function ShelterList(props) {
-
-    var ref = useRef(null);
-    const [map, setMap] = useState();
-
-    useEffect(function () {
-        if (ref.current && !map) {
-            setMap(new window.google.maps.Map(ref.current, {}));
-        }
-    }, [ref, map]);
-
+    console.log(props.shelters)
     const render = (status) => {
         return <h1>{status}</h1>;
     };
 
-    return (
-        <div className="shelterList">
-            <br></br>
-            <h1>Refugees Welcome</h1>
-            <div className="googleMap">
-            <GoogleMap 
-                onLoad={map => {
-                    const bounds = new window.google.maps.LatLngBounds();
-                    map.fitBounds(bounds);
-                }}
-                onUnmount={map => {
-                    // do your stuff before map is unmounted
-                }}
-            /></div>
-            <h1>Available Shelters</h1>
+    const position = [53.551086, 9.993682]
 
-            {/* <div className="row">
-            { props.shelters.map( shelter => {
-                return ( <div className="col-4" key={shelter._id}><h2>{shelter.name}</h2>
-                <h4>Languages: {shelter.languages}</h4>
-                <h4>Address: {shelter.address}</h4>
-                <Link key={shelter._id} to={`/shelter/${shelter._id}`}>more Details</Link></div>
+    var mapOptions = {
+        center: [17.385044, 78.486671],
+        zoom: 15
+     }
+
+    var i=0;
+
+    return (
+        <>
+        
+        <h1 className="m-4">Available Shelters</h1><div className="mapShelter">
+          <MapContainer center={position} zoom={6} scrollWheelZoom={true} style={{ height: 600, width: "70vw" }}>
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            
+
+            {  props.shelters && 
+                props.shelters.map( shelter => {
+                    if (shelter.location.coordinates.length < 1)
+                    {
+                        shelter.location.coordinates = [53.551086, 9.993682]
+                    }
+
+                return (
+                    <>
+                   
+                    <Marker position={shelter.location.coordinates}>
+                        <Popup>
+                            <b>{shelter.name}</b><br></br>
+                            {shelter.description}<br></br>
+                            {shelter.languages}<br></br>
+                            {shelter.contactInfo}<br></br>
+                            {shelter.address}
+                        </Popup>
+                    </Marker>
+                    
+                    </>
                 )
             }
             )}
-</div> */}
-            <div className="container">
-                <div className="row d-flex justify-content-center" >
+            </MapContainer>
+</div>
+            <div className="row d-flex justify-content-center">
 
-                    {props.shelters.map(shelter => {
+            {props.shelters.map(shelter => {
                         return (
 
                             <Card style={{ width: '18rem', margin: "5px" }}>
-                                <Card.Body id="">
+                                <Card.Body >
                                     {/* <div className=" col-sm-3 rounded border border-warning  shelter-summary mapped" key={shelter._id}> */}
                                     <Card.Title ><h2>{shelter.name}</h2></Card.Title>
                                     <Card.Text>
@@ -68,10 +80,17 @@ export default function ShelterList(props) {
 
                     )}
 
-                </div>
+            
 
             </div>
+            </>
+        )
+    }
 
-        </div>
-    )
-}
+    // <div className="shelter-summary" key={shelter._id}>
+    // <h2>{shelter.name}</h2>
+    // <h4>Languages: {shelter.languages}</h4>
+    // <h4>Address: {shelter.address}</h4>
+    // <Link key={shelter._id} to={`/shelter/${shelter._id}`}>more Details</Link>
+    // <br></br>
+    // </div>
