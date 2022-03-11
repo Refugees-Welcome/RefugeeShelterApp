@@ -93,7 +93,7 @@ function App() {
         } />
         <Route path="/refugeeEdit/:id" element={
           <IsPrivate>
-            <RefugeeEdit refugee={refugeesArr} updateRefugee={fetchShelter} />
+            <RefugeeEdit refugee={refugeesArr} updateRefugee={fetchRefugee} />
           </IsPrivate>
         } />
 
@@ -126,7 +126,7 @@ function App() {
         } />
         <Route path="/profile" element={
           <IsPrivate>
-            <UserProfile  refugee={refugeesArr} shelter={shelterArr}/>
+            <UserProfile refugee ={refugeesArr} shelter={shelterArr}/>
           </IsPrivate>
         } />
       </Routes>

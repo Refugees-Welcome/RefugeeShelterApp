@@ -8,19 +8,64 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 function Navigation() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   return (
-    <div className="d-flex justify-content-between">
+    <div className="">
      
-      <Navbar className="navbar-toggler" fixed="top" expand="sm" >
-        <Container>
-          <Navbar.Toggle aria-controls="responsive-navbar" />
-          <Navbar.Collapse id="responsive-navbar-nav">
+      <Navbar className="navbar-toggler "  expand="sm" >
+        
+          <Navbar.Toggle aria-controls="responsive-navbar " />
+          <Navbar.Collapse  id="responsive-navbar-nav ">
             <Nav>
-              {/* <img className= "icon" src="../public/images/page-icon.png" alt=""/> */}
-              <NavLink className="nav-link navbar-brand" to="/">
+              <NavLink className="nav-link navbar-brand ms-4" to="/">
                 Refugees Welcome
               </NavLink>
-              <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                {!isLoggedIn && <>
+              <ul className="navbar-nav ">
+              <li className="nav-item">
+                      <NavLink className="nav-link " to="/">
+                        Shelters
+                      </NavLink>
+                    </li>
+                {isLoggedIn &&
+                  <>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/shelter/new">
+                        list Shelter
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/refugee/">
+                        Refugees
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/refugee/new">
+                        list Refugee
+                      </NavLink>
+                    </li>
+                    
+                  
+                    
+                  </>
+                }
+                
+                  </ul>
+            </Nav>
+          </Navbar.Collapse>
+          <ul className='navbar-nav me-4'>
+          {isLoggedIn &&  <>
+          <li className="nav-item">
+                      <NavLink className="nav-link" to="/profile">
+                        USER
+                      </NavLink>
+                    </li>
+                    
+          <div className='nav navbar-nav navbar-right'>
+                    <button className='btn btn-primary p-1 t logOutButton' onClick={logOutUser}>Logout</button>
+                    </div></>}
+                   
+        {!isLoggedIn && <>
+        
+                
+                  
                   <li className="nav-item">
                     <NavLink className="nav-link" to="/login/">
                       Login
@@ -30,41 +75,10 @@ function Navigation() {
                     <NavLink className="nav-link" to="/Signup/">
                       Signup
                     </NavLink>
-                  </li></>}
-                {isLoggedIn &&
-                  <>
-                    <li className="nav-item">
-                      <NavLink className="nav-link" to="/refugee/">
-                        Refugees
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink className="nav-link" to="/refugee/new">
-                        create Refugee
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink className="nav-link" to="/shelter/new">
-                        create Shelter
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink className="nav-link" to="/profile">
-                        User
-                      </NavLink>
-                    </li>
-                    &nbsp;
-                    <button className='btn btn-primary p-1 t logOutButton' onClick={logOutUser}>Logout</button>
-                    &nbsp;
-                    {/* <span>{user && user.username}</span> */}
+                  </li>
+                  
                   </>
-                }
-
-
-              </ul>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
+                  }</ul>
       </Navbar>
       
     </div>

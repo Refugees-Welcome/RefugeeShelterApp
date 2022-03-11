@@ -151,9 +151,6 @@ export default function RefugeeEdit(props) {
     return (
         <section className="refugeeDetails">
         <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
             {
                 renderDetails(refugee)
 
