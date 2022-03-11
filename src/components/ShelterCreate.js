@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useContext, useState } from "react";
+import { VideoOverlay } from "react-leaflet";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../context/auth.context"
-export default function CreateProject(props) {
+export default function ShelterCreate(props) {
 
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
@@ -17,34 +18,52 @@ export default function CreateProject(props) {
     const { getToken } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
+        console.log("ShelterCreate");
         e.preventDefault();
 
-        const shelterDetails = {
+        var shelterDetails = {
             name: name,
             languages: languages,
             contactInfo: contactInfo,
             description: description,
             author: user._id,
             // available,
-            address: address
+            address: address,
+            location: {
+                type: 'Point',
+                coordinates: []
+            }
         };
-        const storedToken = getToken();
 
-        axios.post(
-            `${process.env.REACT_APP_API_URL}/shelter`,
-            shelterDetails,
-            { headers: { Authorization: `Bearer ${storedToken}` } }
-        )
+        axios
+        .get(`https://nominatim.openstreetmap.org/search?&format=geojson&q=${shelterDetails.address}`)
+        .then((response) => {
+            console.log(response.data.features[0].geometry.coordinates[0]);
+            console.log(response.data.features[0].geometry.coordinates[1]);
+
+            shelterDetails.location.coordinates = [response.data.features[0].geometry.coordinates[1], response.data.features[0].geometry.coordinates[0]];
+
+            console.log(shelterDetails)
+
+            axios.post(`${process.env.REACT_APP_API_URL}/shelter`,
+                        shelterDetails,
+                        { headers: { Authorization: `Bearer ${storedToken}` } }
+            )
             .then(response => {
                 props.updateShelter();
                 navigate("/");
             })
             .catch(error => console.log("error creating new shelter...", error))
+        })
+        .catch(error => console.log("error creating new shelter...", error));
+
+        const storedToken = getToken();
+
     }
 
     return (
         <div className="ShelterCreate">
- <br></br>
+        <br></br>
         <br></br>
         <br></br>
         <br></br>
@@ -64,7 +83,7 @@ export default function CreateProject(props) {
                                     className="form-control m-2"
                                     id="Name"
                                 />
-                            
+
                         </div>
 
                         <div className="col-md-6  m-2">
@@ -77,7 +96,7 @@ export default function CreateProject(props) {
                                     onChange={(e) => setLanguages(e.target.value)}
                                     className="form-control m-2"
                                 />
-                            
+
                         </div>
 
                         <div className="col-md-6  m-2">
@@ -90,7 +109,7 @@ export default function CreateProject(props) {
                                     onChange={(e) => setContactInfo(e.target.value)}
                                     className="form-control m-2"
                                 />
-                            
+
                         </div>
 
                         <div className="col-md-6  m-2">
@@ -104,7 +123,7 @@ export default function CreateProject(props) {
                                     className="form-control m-2"
                                     cols="40" rows="5"
                                 />
-                            
+
                         </div>
 
                         <div className="col-md-6  m-2">
@@ -117,7 +136,7 @@ export default function CreateProject(props) {
                                     onChange={(e) => setAddress(e.target.value)}
                                     className="form-control m-2"
                                 />
-                            
+
                         </div><div className="col-md-6  m-2">
                         <div className="d-grid gap-2">
                             <button type="submit" className="btn btn-primary p-3 mt-2">list Refugee</button>
