@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/auth.context"
+import './LoginPage.css';
 
 function SignupPage(props) {
 
@@ -44,51 +45,54 @@ function SignupPage(props) {
       <div className="container">
         <div className="col-lg-1"></div>
         <div className="col-lg-2 mx-auto"></div>
-        <h1>Sign Up</h1>
+        <h1 className="fadeIn first">Sign Up</h1>
 
         {errorMessage && <p className="error">{errorMessage}</p>}
 
         <form onSubmit={handleSignupSubmit}>
           <div className="form-group">
             <label htmlFor="username">
-              Username:
               <input
                 type="text"
                 required={true}
                 name="username"
                 value={username}
                 onChange={handle}
+                className="fadeIn second"
+                placeholder="Username"
               />
-            </label>
+             </label>
           </div>
 
         <div className="form-group">
-        <label htmlFor="email">
-          Email:
-          <input
-            type="email"
-            required={true}
-            name="email"
-            value={email}
-            onChange={handleEmail}
-          />
-        </label>
+          <label htmlFor="email">
+            <input
+              type="email"
+              required={true}
+              name="email"
+              value={email}
+              className="fadeIn third"
+              onChange={handleEmail}
+              placeholder="email"
+            />
+          </label>
         </div>
 
           <div className="form-group">
             <label htmlFor="password">
-              Password:
               <input
                 type="password"
                 required={true}
                 name="password"
                 value={password}
                 onChange={handlePassword}
+                className="fadeIn fourth"
+                placeholder="password"
               />
             </label>
           </div>
 
-          <button type="submit">Register</button>
+          <button className="fadeIn fifth" type="submit">Register</button>
         </form>
 
         <p>Already have account?</p>
