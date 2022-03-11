@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context"
+import './LoginPage.css';
 
 function LoginPage(props) {
   const [username, setUsername] = useState("");
@@ -42,36 +43,41 @@ function LoginPage(props) {
         <br></br>
         <br></br>
         <br></br>
-      <h1>Login</h1>
+      <h1 className="fadeIn first">Login</h1>
 
       {errorMessage && <p className="error">{errorMessage}</p>}
 
       <form onSubmit={handleLoginSubmit}>
+      <div className="form-group">
         <label>
-          Username:
           <input
             type="text"
+            className="fadeIn second"
             required={true}
             name="username"
             value={username}
             onChange={handleUsername}
+            placeholder="login"
           />
         </label>
+        </div>
 
+        <div className="form-group">
         <label>
-          Password:
           <input
             type="password"
+            className="fadeIn third" 
             required={true}
             name="password"
             value={password}
             onChange={handlePassword}
+            placeholder="password"
           />
         </label>
+        </div>
 
-        <button type="submit">Login</button>
+        <button className="fadeIn fourth" type="submit">Login</button>
       </form>
-
 
       <p>Don't have an account yet?</p>
       <Link to={"/signup"}> Sign Up</Link>

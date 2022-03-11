@@ -63,7 +63,7 @@ export default function ShelterCreate(props) {
 
     return (
         <div className="ShelterCreate">
- <br></br>
+        <br></br>
         <h1>I have a shelter that i can share</h1>
              <div className="ShelterEdit">
                 <form onSubmit={handleSubmit}>
