@@ -1,14 +1,15 @@
 import React from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { findByLabelText } from '@testing-library/react'; 
 
 const containerStyle = {
-  width: '100vw',
+  width: '70%',
   height: '400px'
 };
 
 const center = {
-  lat: 	50.049683,
-  lng: 	19.944544
+  lat: 	51.049683,
+  lng: 	21.944544
 };
 
 function MyComponent() {
@@ -31,6 +32,7 @@ function MyComponent() {
 
   return isLoaded ? (
       <GoogleMap
+      style={{borderRadius: "2rem"}}
         mapContainerStyle={containerStyle}
         center={center}
         zoom={6}

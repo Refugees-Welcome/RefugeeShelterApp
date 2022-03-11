@@ -26,28 +26,29 @@ export default function ShelterDetails() {
                     
                     <div className="col-md-6 rounded border border-warning mapped">
                         <div className="form-group">
-                            <h1 className="Name">Name: <br></br>{details.name}</h1>
+                            <h1 className="Name text-start">Name: <br></br></h1>
+                            <h1>{details.name}</h1>
 
                         </div>
                         <br></br>
-                        <div className="form-group">
-                            <h4 className="Languages">Languages:<br></br> {details.languages}</h4>
-
+                        <div className="form-group ">
+                            <h2 className="Languages text-start">Languages:<br></br> </h2>
+<h2>{details.languages}</h2>
                         </div>
                         <br></br>
                         <div className="form-group">
-                            <p className="ContactInfo">ContactInfo:<br></br> {details.contactInfo}</p>
-
+                            <h4 className="ContactInfo text-start">ContactInfo:<br></br> </h4>
+<h4>{details.contactInfo}</h4>
                         </div>
                         <br></br>
-                        <div className="form-group">
-                            <p className="Description">Description: <br></br>{details.description}</p>
-
+                        <div className="form-group ">
+                            <h4 className="Description text-start">Description: <br></br></h4>
+<h4>{details.description}</h4>
                         </div>
                         <br></br>
-                        <div className="form-group">
-                            <p className="Address">Address:<br></br> {details.address}</p>
-
+                        <div className="form-group ">
+                            <h4 className="Address text-start">Address:<br></br></h4>
+<h4>{details.address}</h4>
                         </div>
                         <br></br>
                         <div className="col-6">

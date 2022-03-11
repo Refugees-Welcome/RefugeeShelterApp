@@ -11,3 +11,7 @@
 .listLink{
     text-decoration: none;
 }
+.googleMap{
+    display: flex;
+    justify-content: center;
+}
