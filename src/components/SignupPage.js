@@ -52,13 +52,13 @@ function SignupPage(props) {
         <form onSubmit={handleSignupSubmit}>
           <div className="form-group">
             <label htmlFor="username">
-              <input
+              <input 
                 type="text"
                 required={true}
                 name="username"
                 value={username}
                 onChange={handle}
-                className="fadeIn second"
+                className="fadeIn second inputLogin"
                 placeholder="Username"
               />
              </label>
@@ -66,12 +66,12 @@ function SignupPage(props) {
 
         <div className="form-group">
           <label htmlFor="email">
-            <input
+            <input 
               type="email"
               required={true}
               name="email"
               value={email}
-              className="fadeIn third"
+              className="fadeIn third inputLogin"
               onChange={handleEmail}
               placeholder="email"
             />
@@ -80,19 +80,19 @@ function SignupPage(props) {
 
           <div className="form-group">
             <label htmlFor="password">
-              <input
+              <input 
                 type="password"
                 required={true}
                 name="password"
                 value={password}
                 onChange={handlePassword}
-                className="fadeIn fourth"
+                className="fadeIn fourth inputLogin"
                 placeholder="password"
               />
             </label>
           </div>
 
-          <button className="fadeIn fifth" type="submit">Register</button>
+          <button className="fadeIn fifth buttonContent" type="submit">Register</button>
         </form>
 
         <p>Already have account?</p>

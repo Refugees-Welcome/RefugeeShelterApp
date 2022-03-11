@@ -40,9 +40,6 @@ function LoginPage(props) {
   return (
     <div className="LoginPage p-sm">
         <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
       <h1 className="fadeIn first">Login</h1>
 
       {errorMessage && <p className="error">{errorMessage}</p>}
@@ -52,7 +49,7 @@ function LoginPage(props) {
         <label>
           <input
             type="text"
-            className="fadeIn second"
+            className="fadeIn second inputLogin"
             required={true}
             name="username"
             value={username}
@@ -66,7 +63,7 @@ function LoginPage(props) {
         <label>
           <input
             type="password"
-            className="fadeIn third" 
+            className="fadeIn third inputLogin" 
             required={true}
             name="password"
             value={password}
@@ -76,7 +73,7 @@ function LoginPage(props) {
         </label>
         </div>
 
-        <button className="fadeIn fourth" type="submit">Login</button>
+        <button className="fadeIn fourth buttonContent" type="submit">Login</button>
       </form>
 
       <p>Don't have an account yet?</p>
